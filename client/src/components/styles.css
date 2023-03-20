@@ -1,0 +1,18 @@
+/* NAVBAR */
+
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.Navbar-logo {
+    margin:0px;
+}
+
+.Navbar-signin .Navbar-signedin {
+
+}
