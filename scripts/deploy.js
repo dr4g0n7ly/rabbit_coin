@@ -13,12 +13,12 @@ async function main() {
   await rabbitCoin.deployed();
 
   const data = {
-    address: marketplace.address,
-    abi: JSON.parse(marketplace.interface.format('json'))
+    address: rabbitCoin.address,
+    abi: JSON.parse(rabbitCoin.interface.format('json'))
   }
 
   //This writes the ABI and address to the rabbitcoin.json
-  fs.writeFileSync('./client/src/RabbitCoin.json', JSON.stringify(Mdata))
+  fs.writeFileSync('./client/src/RabbitCoin.json', JSON.stringify(data))
 
   console.log("Deployed successfully");
 }
