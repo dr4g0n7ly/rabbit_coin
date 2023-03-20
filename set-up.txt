@@ -1,0 +1,29 @@
+INSTALLS:
+npm i --save-dev hardhat
+npx hardhat
+npm @openzeppelin/contracts
+npm i dotenv
+
+DOTENV:
+add ALCHEMY_API_KEY (redeem from alchemy)
+add GOERLI_PRIVATE_KEY (your private key for test account)
+
+HARDHAT CONFIG:
+to module.exports in hardhat.config.js add:
+
+  defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      chainId: 1337
+    },
+    goerli: {
+      url: process.env.ALCHEMY_API_KEY,
+      accounts: [process.env.GOERLI_PRIVATE_KEY]
+    }
+  },
+
+DEPLOY:
+update deploy.js to requirement
+
+CLIENT:
+create react app with 'npx create-react-app <project name>'
