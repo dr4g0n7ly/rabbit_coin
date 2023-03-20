@@ -41,14 +41,20 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar web3Handler={web3Handler} account={account}/>
-      {/* { loading ? (
-        < Landing />
-      ):(
-        <Routes>
-          <Route path="/" element={<Home tokenContract={tokenContract}/>} account={account}/>
-        </Routes>
-      )} */}
+      <div className='App'>
+        <br/>
+        <br/>
+        <br/>
+        hi
+        <Navbar web3Handler={web3Handler} account={account}/>
+        {/* { loading ? (
+          < Landing />
+        ):(
+          <Routes>
+            <Route path="/" element={<Home tokenContract={tokenContract}/>} account={account}/>
+          </Routes>
+        )} */}
+      </div>
     </BrowserRouter>
   );
 }

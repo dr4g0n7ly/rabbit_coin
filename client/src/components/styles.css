@@ -1,18 +1,43 @@
+/* General */
+
 /* NAVBAR */
 
 .Navbar {
+
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    width: 1100px;
+    margin: auto;
+
     display: flex;
     justify-content: space-between;
 
     position: fixed;
     top: 0;
-    left: 0;
+
+    background-color: aqua;
 }
 
 .Navbar-logo {
     margin:0px;
+    margin-left: 12px;
 }
 
-.Navbar-signin .Navbar-signedin {
+.Navbar-signin {
+    margin: 0px;
+    margin-right: 12px;
+}
 
+.Navbar-signedin {
+    margin: 0px;
+    margin-right: 12px;
+}
+
+
+@media screen and (max-width: 1100px) {
+    .Navbar {
+        min-width: 420px;
+        width: 100vw;
+    }
 }

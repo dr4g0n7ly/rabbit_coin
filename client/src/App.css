@@ -1,6 +1,12 @@
 .App {
-  max-width: 700px;
+  width: 1100px;
   margin: auto;
-  background-color: beige;
+  background-color: blueviolet;
 }
 
+@media screen and (max-width: 1100px) {
+  .App {
+    min-width: 420px;
+    width: 100vw;
+  }
+}
