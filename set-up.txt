@@ -1,9 +1,9 @@
 INSTALLS:
-npm i --save-dev hardhat
-npx hardhat
-npm i @openzeppelin/contracts
-npm i dotenv
-npm i @nomicfoundation/hardhat-toolbox
+'npm i --save-dev hardhat'
+'npx hardhat'  ----> 'create javascript project'
+'npm i @openzeppelin/contracts'
+'npm i dotenv'
+'npm i @nomicfoundation/hardhat-toolbox'
 
 DOTENV:
 add ALCHEMY_API_KEY (redeem from alchemy)
@@ -28,6 +28,8 @@ update deploy.js to requirement
 
 CLIENT:
 create react app with 'npx create-react-app <project name>'
+
+CREATE CONTRACT
 
 DEPLOY:
 npx hardhat run --network goerli scripts/deploy.js
