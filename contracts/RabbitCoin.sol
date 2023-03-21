@@ -10,6 +10,8 @@ contract RabbitCoin {
     uint256 private constant _totalSupply = 10000000000 * 10 ** 18;
     uint8 private constant _decimals = 18;
 
+    uint256 private constant _price = 100000000000000 wei;
+
     mapping(address => uint256) public balances;
 
     event minted(address from, uint256 amount);
@@ -54,9 +56,9 @@ contract RabbitCoin {
 
     // WRITE --------
 
-    error InsufficientBalance(uint requested, uint available);
+    error InsufficientBalance(uint256 requested, uint256 available);
 
-    event Transfered(address from, address to, uint amount);
+    event Transfered(address from, address to, uint256 amount);
 
     function transfer(address receiver_, uint256 amount_) public returns (bool) {
         if(amount_ > balances[msg.sender]) {
@@ -71,6 +73,13 @@ contract RabbitCoin {
 
         emit Transfered(msg.sender, receiver_, amount_);
 
+        return true;
+    }
+
+    function deposit(uint256 amount_) public payable returns (bool) {
+        require(msg.value == _price * amount_, "Insufficient Ethereum");
+        balances[msg.sender] += amount_;
+        balances[minter] == amount_;
         return true;
     }
 
