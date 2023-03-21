@@ -1,11 +1,12 @@
 import { createContext, useState } from "react"
 
-const AccountContext = createContext()
+export const AccountContext = createContext()
 
-export function AccountProvider({children}) {
+export function AccountProvider({ children }) {
+    const [account, setAccount] = useState()
     return (
-        <AccountContext.Provider value={{item: 1}}>{children}</AccountContext.Provider>
+        <AccountContext.Provider value={{account, setAccount}}>
+            {children}
+        </AccountContext.Provider>
     )
 }
-
-export default AccountContext
