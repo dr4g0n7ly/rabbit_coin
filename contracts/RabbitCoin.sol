@@ -4,11 +4,11 @@ pragma solidity ^0.8.7;
 contract RabbitCoin {
 
     address public minter;
-    string public constant _name = "RabbitCoin";
-    string public constant _symbol = "RBT";
+    string private constant _name = "RabbitCoin";
+    string private constant _symbol = "RBT";
 
-    uint256 public constant _totalSupply = 10000000000 * 10 ** 18;
-    uint8 public constant _decimals = 18;
+    uint256 private constant _totalSupply = 10000000000 * 10 ** 18;
+    uint8 private constant _decimals = 18;
 
     mapping(address => uint256) public balances;
 
