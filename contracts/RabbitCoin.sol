@@ -58,6 +58,7 @@ contract RabbitCoin {
 
     error InsufficientBalance(uint256 requested, uint256 available);
 
+
     event Transfered(address from, address to, uint256 amount);
 
     function transfer(address receiver_, uint256 amount_) public returns (bool) {
@@ -76,10 +77,37 @@ contract RabbitCoin {
         return true;
     }
 
+
+    event Deposited(address from, uint256 amount, uint256 price);
+
     function deposit(uint256 amount_) public payable returns (bool) {
         require(msg.value == _price * amount_, "Insufficient Ethereum");
+
         balances[msg.sender] += amount_;
-        balances[minter] == amount_;
+        balances[minter] -= amount_;
+
+        emit Deposited(msg.sender, amount_, msg.value);
+
+        return true;
+    }
+
+
+    event Withdrew(address from, uint256 amount, uint256 price);
+
+    function withdraw(uint amount_) public returns (bool) {
+
+        if(amount_ > balances[msg.sender]) {
+            revert InsufficientBalance ({
+                requested: amount_,
+                available: balances[msg.sender]
+            });
+        }
+
+        balances[msg.sender] -= amount_;
+        balances[minter] += amount_;
+
+        payable(msg.sender).transfer(amount_ * _price);
+        
         return true;
     }
 
