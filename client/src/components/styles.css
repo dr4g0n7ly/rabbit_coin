@@ -88,7 +88,7 @@ section {
 
 #bg-circle-yellow {
     top: 400px;
-    left: 0px;
+    right: 1000px;
     height: 600px;
     width: 660px;
     z-index: -2;
@@ -97,9 +97,20 @@ section {
 
 
 
-@media screen and (max-width: 1600) {
+@media screen and (max-width: 1600px) {
     Home {
-        min-width: 420px;
+        min-width: 580px;
         width: 80%;
+    }
+}
+
+@media screen and (max-width:1150px) {
+    #bg-circle-yellow {
+        top: 250px;
+        right: 0px;
+    }
+
+    #bg-circle-purple {
+        right: 300px;
     }
 }
