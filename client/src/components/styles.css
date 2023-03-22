@@ -37,12 +37,12 @@ section {
     font-family: 'Ageo Personal Use SemiBold';
     font-size: 32px;
     margin: auto;
-    margin-left: 12px;
+    margin-left: 32px;
 }
 
 .Navbar-signin, .Navbar-signedin {
     margin: 0px;
-    margin-right: 12px;
+    margin-right: 32px;
     text-decoration: none;
     color: rgb(11, 11, 11);
     height: 44px;
@@ -70,7 +70,7 @@ section {
 @media screen and (max-width: 1600px) {
     .Navbar {
         width: 100%;
-        min-width: 420px;
+        min-width: 580px;
     }
 }
 
