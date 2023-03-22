@@ -106,8 +106,18 @@ const Home = () => {
 
 
             <section>
-                <p className="home-balance-h1">Balance</p>
-                <p>{balance} RBT</p>
+                <p className="home-transaction-h1">My Account</p>
+                <br/>
+                <div className='my-account-container'>
+                    <div>
+                        <p>balance</p>
+                        <p className='number'>{balance} RBT</p>
+                    </div>
+                    <div>
+                        <p>Account address</p>
+                        <p className='number'>{account}</p>
+                    </div>
+                </div>
             </section>
 
             <br/>
