@@ -37,7 +37,7 @@ section {
     margin: 0px;
     margin-right: 12px;
     text-decoration: none;
-    color: aliceblue;
+    color: rgb(11, 11, 11);
 }
 
 
@@ -51,6 +51,5 @@ section {
 /* HOME */
 
 .bg-circle {
-    z-index: -1;
     position: absolute;
 }
