@@ -8,10 +8,11 @@ const Home = () => {
     const [balance, setBalance] = useState(0)
     const {account} = useContext(AccountContext)
 
+    const [transferAmount, setTransferAmount] = useState();
+    const [transferReciever, setTransferReciever] = useState('');
+
     const getBalance = async () => {
         const ethers = require("ethers");
-
-        console.log("home account", JSON.stringify(account))
 
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -25,19 +26,105 @@ const Home = () => {
 
     useEffect(() => {
         getBalance()
-    },[account])
+    })
+
+    const handleTransferSubmit = async (e) => {
+        e.preventDefault()
+        const ethers = require("ethers");
+        
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+
+        let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
+
+        const transferAmountString = transferAmount.toString() + "000000000000000000"
+
+        let transferComplete = await contract.transfer(transferReciever, transferAmountString)
+        console.log(transferComplete)
+    }
+
+
+
+    
+    // const animatePaths = () => {
+    //     let path = document.querySelector('path')
+    //     let pathLength = path.getTotalLength()
+    
+    //     path.style.strokeDasharray = pathLength + ' ' + pathLength
+    //     path.style.strokeDashoffset = pathLength
+    
+    //     window.addEventListener('scroll', () => {
+    //         var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+    //         var drawLength = pathLength * scrollPercentage
+    //         path.style.strokeDashoffset = pathLength - drawLength
+    //     })
+    // }
 
     return (
         <div className="Home">
             <p className="h1">Balance</p>
-            <p>{balance}</p>
+            <p>{balance} RBT</p>
 
+            <br/>
             <br/>
 
             <p className="h1">Transfer</p>
-            <form>
-                
+            <br/>
+            <form onSubmit={handleTransferSubmit}>
+
+                <label htmlFor='amount' className='label'>Enter amount:</label>
+                <input 
+                    id="transfer-amount" 
+                    type="number"
+                    onChange={(e) => setTransferAmount(e.target.value)}
+                    value = { transferAmount }
+                    required
+                    autoFocus
+                />
+
+                <label htmlFor='reciever' className='label'>Enter reciever address:</label>
+                <input
+                    id="transfer-reciever"
+                    type="text"
+                    onChange={(e) => setTransferReciever(e.target.value)}
+                    value = { transferReciever }
+                    required
+                    autoFocus
+                />  
+
+                <button>Transfer RBT</button>
+
             </form>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+            <section>
+                <svg width="90%" height="auto" viewBox="0 0 1329 600" fill="none" xmlns="http://www.w3.org/2000/svg">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <path d="M1 0V117.5H142.5V289.5M142.5 289.5V518.5H720.5V599.5M142.5 289.5H292" stroke="#FF009E" stroke-width="1.5" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <path d="M1144 288H1267V443V476.5M1267 476.5V486.5M1267 476.5L1214 503.5M1267 486.5V494.5L1200 530M1267 486.5L1318.5 513" stroke="#FF009E" stroke-width="1.5" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <path stroke="#FF009E" stroke-width="1.5" d="M1205 505a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <path stroke="#FF009E" stroke-width="1.5" d="M1191 532a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <path stroke="#FF009E" stroke-width="1.5" d="M1318 516a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                </svg>
+            </section>
 
         </div>
     )

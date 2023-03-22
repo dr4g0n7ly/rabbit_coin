@@ -8,9 +8,12 @@ contract RabbitCoin {
     string private constant _symbol = "RBT";
 
     uint256 private constant _totalSupply = 10000000000 * 10 ** 18;
-    uint8 private constant _decimals = 18;
+    uint8 private constant _decimals = 18;    uint256 private constant _price = 100000000000000 wei;
 
-    uint256 private constant _price = 100000000000000 wei;
+    uint256 public _totalDepositAmount;
+    uint256 public _totalLoans;
+    uint256 public _totalLoanAmount;
+    uint256 public _totalProfit;
 
     mapping(address => uint256) public balances;
 
@@ -25,6 +28,11 @@ contract RabbitCoin {
     constructor() {
         minter = msg.sender;
         mint(_totalSupply);
+
+        _totalDepositAmount = 0;
+        _totalLoans = 0;
+        _totalLoanAmount = 0;
+        _totalProfit = 0;
     }
 
 
@@ -53,13 +61,17 @@ contract RabbitCoin {
         return balances[tokenOwner_];
     }
 
+    function getDepositAmount() public view returns (uint256) {
+        return _totalDepositAmount;
+    }
+
 
     // WRITE --------
 
     error InsufficientBalance(uint256 requested, uint256 available);
 
+    event Transfered(address from, address to, uint256 amount, uint256 price_Eth, bytes32 transaction_type);
 
-    event Transfered(address from, address to, uint256 amount);
 
     function transfer(address receiver_, uint256 amount_) public returns (bool) {
         if(amount_ > balances[msg.sender]) {
@@ -72,13 +84,11 @@ contract RabbitCoin {
         balances[msg.sender] -= amount_;
         balances[receiver_] += amount_;
 
-        emit Transfered(msg.sender, receiver_, amount_);
+        emit Transfered(msg.sender, receiver_, amount_, 0, "transfer");
 
         return true;
     }
 
-
-    event Deposited(address from, uint256 amount, uint256 price);
 
     function deposit(uint256 amount_) public payable returns (bool) {
         require(msg.value == _price * amount_, "Insufficient Ethereum");
@@ -86,13 +96,13 @@ contract RabbitCoin {
         balances[msg.sender] += amount_;
         balances[minter] -= amount_;
 
-        emit Deposited(msg.sender, amount_, msg.value);
+        _totalDepositAmount += msg.value;
+
+        emit Transfered(minter, msg.sender, amount_, msg.value, "deposit");
 
         return true;
     }
 
-
-    event Withdrew(address from, uint256 amount, uint256 price);
 
     function withdraw(uint amount_) public returns (bool) {
 
@@ -107,8 +117,11 @@ contract RabbitCoin {
         balances[minter] += amount_;
 
         payable(msg.sender).transfer(amount_ * _price);
+
+        _totalDepositAmount -= amount_ * _price;
+
+        emit Transfered(msg.sender, minter, amount_, amount_ * _price, "withdraw");
         
         return true;
     }
-
 }
