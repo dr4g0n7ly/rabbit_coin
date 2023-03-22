@@ -81,10 +81,10 @@ const Home = () => {
 
             {/* purple 1 */}
             <div className='bg-circle' style={{
-                top: "40vw",
-                right: "10vw",
-                height: "40vw",
-                width: "40vw",
+                top: "600px",
+                right: "0px",
+                height: "700px",
+                width: "600px",
                 zIndex: -2,
                 backgroundImage: "radial-gradient(#E2CCFF 8%, transparent 70%)"
             }}/>
@@ -92,19 +92,19 @@ const Home = () => {
             {/* blue 1 */}
             <div className='bg-circle' style={{
                 top: "0px",
-                left: "30vw",
-                height: "70vw",
-                width: "40vw",
+                left: "500px",
+                height: "1000px",
+                width: "800px",
                 zIndex: -1,
                 backgroundImage: "radial-gradient(#D8DEF9 8%, transparent 70%)"
             }}/>
 
             {/* yellow 1 */}
             <div className='bg-circle' style={{
-                top: "20vw",
-                left: "30px",
-                height: "40vw",
-                width: "40vw",
+                top: "400px",
+                right: "1300px",
+                height: "600px",
+                width: "660px",
                 zIndex: -3,
                 backgroundImage: "radial-gradient(#F0E2C7 8%, transparent 70%)"
             }}/>

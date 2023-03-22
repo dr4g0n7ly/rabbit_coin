@@ -51,5 +51,7 @@ section {
 /* HOME */
 
 .bg-circle {
+    margin: 0;
+    padding: 0;
     position: absolute;
 }
