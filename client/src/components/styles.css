@@ -81,6 +81,19 @@ section {
     padding: 20px;
 }
 
+.home-myaccount-section {
+    background-image: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+    border-radius: 0.8vw;
+    border: 0.1vw solid #fff;
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.1));
+}
+
+.my-account-container {
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
 .home-transaction-h1 {
     font-size: 28px;
     margin-left: 20px;

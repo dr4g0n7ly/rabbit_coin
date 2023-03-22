@@ -105,7 +105,7 @@ const Home = () => {
             <div className='bg-circle' id='bg-circle-yellow'/>
 
 
-            <section>
+            <section className='home-myaccount-section'>
                 <p className="home-transaction-h1">My Account</p>
                 <br/>
                 <div className='my-account-container'>
