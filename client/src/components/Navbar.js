@@ -41,7 +41,7 @@ const Navbar = () => {
         return (
             <div className="Navbar">
                 <p className='Navbar-logo'>Rabbit$</p>
-                <Link className='Navbar-signedin' onClick={web3Handler}>{account.slice(0, 5)+'...'}</Link>
+                <Link className='Navbar-signedin number' onClick={web3Handler}>{account.slice(0, 5)+'...'}</Link>
             </div>
         )
     }
