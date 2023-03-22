@@ -8,8 +8,10 @@ const Home = () => {
     const [balance, setBalance] = useState(0)
     const {account} = useContext(AccountContext)
 
-    const [transferAmount, setTransferAmount] = useState();
-    const [transferReciever, setTransferReciever] = useState('');
+    const [depositAmount, setDepositAmount] = useState(0)
+
+    const [transferAmount, setTransferAmount] = useState(0)
+    const [transferReciever, setTransferReciever] = useState('')
 
     const getBalance = async () => {
         const ethers = require("ethers");
@@ -28,6 +30,20 @@ const Home = () => {
         getBalance()
     })
 
+    const handleDepositSubmit = async (e) => {
+        e.preventDefault()
+        const ethers = require("ethers")
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+
+        let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
+
+        const depositAmountString = depositAmount.toString() + "000000000000000000"
+
+        let depositComplete = await contract.transfer(depositAmountString)
+        console.log("depositComplete: ", depositComplete)
+    }
+
     const handleTransferSubmit = async (e) => {
         e.preventDefault()
         const ethers = require("ethers");
@@ -40,7 +56,7 @@ const Home = () => {
         const transferAmountString = transferAmount.toString() + "000000000000000000"
 
         let transferComplete = await contract.transfer(transferReciever, transferAmountString)
-        console.log(transferComplete)
+        console.log("transferComplete: ", transferComplete)
     }
 
 
@@ -62,39 +78,88 @@ const Home = () => {
 
     return (
         <div className="Home">
-            <p className="h1">Balance</p>
-            <p>{balance} RBT</p>
+
+            <section>
+                <p className="home-balance-h1">Balance</p>
+                <p>{balance} RBT</p>
+            </section>
 
             <br/>
             <br/>
 
-            <p className="h1">Transfer</p>
-            <br/>
-            <form onSubmit={handleTransferSubmit}>
+            <section>
 
-                <label htmlFor='amount' className='label'>Enter amount:</label>
-                <input 
-                    id="transfer-amount" 
-                    type="number"
-                    onChange={(e) => setTransferAmount(e.target.value)}
-                    value = { transferAmount }
-                    required
-                    autoFocus
-                />
+                <p className="home-transaction-h1">Deposit</p>
+                <br/>
+                <form onSubmit={handleDepositSubmit}>
 
-                <label htmlFor='reciever' className='label'>Enter reciever address:</label>
-                <input
-                    id="transfer-reciever"
-                    type="text"
-                    onChange={(e) => setTransferReciever(e.target.value)}
-                    value = { transferReciever }
-                    required
-                    autoFocus
-                />  
+                    <label htmlFor='amount' className='label'>Enter amount:</label>
+                    <input 
+                        id="transfer-amount" 
+                        type="number"
+                        onChange={(e) => setTransferAmount(e.target.value)}
+                        value = { transferAmount }
+                        required
+                        autoFocus
+                    />
 
-                <button>Transfer RBT</button>
+                    <button>Deposit RBT</button>
+
+                </form>
+
+                <br/>
+                <br/>
+
+                <p className="home-transaction-h1">Withdraw</p>
+                <br/>
+                <form onSubmit={handleDepositSubmit}>
+
+                    <label htmlFor='amount' className='label'>Enter amount:</label>
+                    <input 
+                        id="transfer-amount" 
+                        type="number"
+                        onChange={(e) => setTransferAmount(e.target.value)}
+                        value = { transferAmount }
+                        required
+                        autoFocus
+                    />
+
+                    <button>Withdraw RBT</button>
+
+                </form>
+
+                <br/>
+                <br/>
+
+                <p className="home-transaction-h1">Transfer</p>
+                <br/>
+                <form onSubmit={handleTransferSubmit}>
+
+                    <label htmlFor='amount' className='label'>Enter amount:</label>
+                    <input 
+                        id="transfer-amount" 
+                        type="number"
+                        onChange={(e) => setTransferAmount(e.target.value)}
+                        value = { transferAmount }
+                        required
+                        autoFocus
+                    />
+
+                    <label htmlFor='reciever' className='label'>Enter reciever address:</label>
+                    <input
+                        id="transfer-reciever"
+                        type="text"
+                        onChange={(e) => setTransferReciever(e.target.value)}
+                        value = { transferReciever }
+                        required
+                        autoFocus
+                    />  
+
+                    <button>Transfer RBT</button>
 
             </form>
+
+            </section>
 
             <br/>
             <br/>
