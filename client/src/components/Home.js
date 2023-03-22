@@ -10,6 +10,8 @@ const Home = () => {
 
     const [depositAmount, setDepositAmount] = useState(0)
 
+    const [withdrawAmount, setWithdrawAmount] = useState(0)
+
     const [transferAmount, setTransferAmount] = useState(0)
     const [transferReciever, setTransferReciever] = useState('')
 
@@ -40,8 +42,22 @@ const Home = () => {
 
         const depositAmountString = depositAmount.toString() + "000000000000000000"
 
-        let depositComplete = await contract.transfer(depositAmountString)
+        let depositComplete = await contract.deposit(depositAmountString)
         console.log("depositComplete: ", depositComplete)
+    }
+
+    const handleWithdrawSubmit = async (e) => {
+        e.preventDefault()
+        const ethers = require("ethers")
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+
+        let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
+
+        const withdrawAmountString = withdrawAmount.toString() + "000000000000000000"
+
+        let withdrawComplete = await contract.withdraw(withdrawAmountString)
+        console.log("withdrawComplete: ", withdrawComplete)
     }
 
     const handleTransferSubmit = async (e) => {
@@ -109,6 +125,7 @@ const Home = () => {
                 backgroundImage: "radial-gradient(#F0E2C7 8%, transparent 70%)"
             }}/>
 
+
             <section>
                 <p className="home-balance-h1">Balance</p>
                 <p>{balance} RBT</p>
@@ -125,10 +142,10 @@ const Home = () => {
 
                     <label htmlFor='amount' className='label'>Enter amount:</label>
                     <input 
-                        id="transfer-amount" 
+                        id="deposit-amount" 
                         type="number"
-                        onChange={(e) => setTransferAmount(e.target.value)}
-                        value = { transferAmount }
+                        onChange={(e) => setDepositAmount(e.target.value)}
+                        value = { depositAmount }
                         required
                         autoFocus
                     />
@@ -142,14 +159,14 @@ const Home = () => {
 
                 <p className="home-transaction-h1">Withdraw</p>
                 <br/>
-                <form onSubmit={handleDepositSubmit}>
+                <form onSubmit={handleWithdrawSubmit}>
 
                     <label htmlFor='amount' className='label'>Enter amount:</label>
                     <input 
-                        id="transfer-amount" 
+                        id="withdraw-amount" 
                         type="number"
-                        onChange={(e) => setTransferAmount(e.target.value)}
-                        value = { transferAmount }
+                        onChange={(e) => setWithdrawAmount(e.target.value)}
+                        value = { withdrawAmount }
                         required
                         autoFocus
                     />
