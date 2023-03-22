@@ -1,13 +1,14 @@
 .App {
-  width: 1300px;
+  width: 1600px;
   margin: auto;
   border: 1px solid #000;
   font-family: 'Ageo Personal Use Regular';
+  font-size: 20px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1600px) {
   .App {
     min-width: 420px;
-    width: 100vw;
+    width: 100%;
   }
 }

@@ -1,11 +1,11 @@
 /* General */
 
 :root {
-    --width: 1300px
+    --width: 1600px
 }
 
 section {
-    width: var(--width);
+    width: 100%;
     border: 1px solid #000;
 }
 
@@ -16,7 +16,7 @@ section {
     padding-top: 12px;
     padding-bottom: 12px;
 
-    width: var(--width);
+    width: 1600px;
     margin: auto;
 
     display: flex;
@@ -26,10 +26,14 @@ section {
     top: 0;
 
     border: 1px solid #000;
+
+    background-color: rgb(247, 247, 247, 0.7);
 }
 
 .Navbar-logo {
-    margin:0px;
+    font-family: 'Ageo Personal Use SemiBold';
+    font-size: 32px;
+    margin: auto;
     margin-left: 12px;
 }
 
@@ -38,20 +42,64 @@ section {
     margin-right: 12px;
     text-decoration: none;
     color: rgb(11, 11, 11);
+    padding: 16px 32px;
+    border: 2px solid #000;
+    margin-bottom: 4px;
 }
 
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1600px) {
     .Navbar {
+        width: 100%;
         min-width: 420px;
-        width: 100vw;
     }
 }
 
 /* HOME */
 
+.Home {
+    margin-top: 40px;
+    padding: 20px;
+}
+
 .bg-circle {
     margin: 0;
     padding: 0;
     position: absolute;
+}
+
+#bg-circle-purple {
+    top: 600px;
+    right: 0px;
+    height: 700px;
+    width: 600px;
+    z-index: -2;
+    background-image: radial-gradient(#E2CCFF 8%, transparent 70%);
+}
+
+#bg-circle-blue {
+    top: -200px;
+    right: 500px;
+    height: 1000px;
+    width: 800px;
+    z-index: -2;
+    background-image: radial-gradient(#D8DEF9 8%, transparent 70%);
+}
+
+#bg-circle-yellow {
+    top: 400px;
+    left: 0px;
+    height: 600px;
+    width: 660px;
+    z-index: -2;
+    background-image: radial-gradient(#F0E2C7 8%, transparent 70%);
+}
+
+
+
+@media screen and (max-width: 1600) {
+    Home {
+        min-width: 420px;
+        width: 80%;
+    }
 }
