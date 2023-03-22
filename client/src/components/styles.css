@@ -6,7 +6,7 @@
 
 section {
     width: var(--width);
-    border: 1px solid #fff;
+    border: 1px solid #000;
 }
 
 /* NAVBAR */
@@ -25,7 +25,7 @@ section {
     position: fixed;
     top: 0;
 
-    border: 1px solid #fff;
+    border: 1px solid #000;
 }
 
 .Navbar-logo {
@@ -46,4 +46,11 @@ section {
         min-width: 420px;
         width: 100vw;
     }
+}
+
+/* HOME */
+
+.bg-circle {
+    z-index: -1;
+    position: absolute;
 }

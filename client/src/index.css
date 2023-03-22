@@ -8,6 +8,6 @@ body {
   background: -webkit-linear-gradient(90deg, hsla(31, 90%, 76%, 1) 0%, hsla(302, 82%, 76%, 1) 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F9C58D", endColorstr="#F492F0", GradientType=1 ); */
 
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-  color: aliceblue;
+  background: rgb(255,255,255);
+  background: linear-gradient(149deg, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 100%);
 }

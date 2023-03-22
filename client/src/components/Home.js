@@ -79,6 +79,30 @@ const Home = () => {
     return (
         <div className="Home">
 
+            <div className='bg-circle' style={{
+                top: "400px",
+                right: "100px",
+                height: "40vw",
+                width: "50vw",
+                backgroundImage: "radial-gradient(#E2CCFF 8%, transparent 70%)"
+            }}/>
+
+            <div className='bg-circle' style={{
+                top: "0px",
+                left: "0px",
+                height: "600px",
+                width: "400px",
+                backgroundImage: "radial-gradient(#D8DEF9 8%, transparent 70%)"
+            }}/>
+
+            <div className='bg-circle' style={{
+                top: "500px",
+                left: "500px",
+                height: "400px",
+                width: "500px",
+                backgroundImage: "radial-gradient(#F0E2C7 8%, transparent 70%)"
+            }}/>
+
             <section>
                 <p className="home-balance-h1">Balance</p>
                 <p>{balance} RBT</p>
