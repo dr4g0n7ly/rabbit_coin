@@ -91,8 +91,15 @@ section {
 .my-account-container {
     margin-left: 20px;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 4fr;
 }
+
+@media screen and (max-width: 800px) {
+    .my-account-container {
+        display: block;
+    }
+}
+
 
 .home-transaction-h1 {
     font-size: 28px;
@@ -133,9 +140,8 @@ section {
 }
 
 @media screen and (max-width: 1600px) {
-    Home {
+    .Home {
         min-width: 580px;
-        width: 80%;
     }
 }
 
