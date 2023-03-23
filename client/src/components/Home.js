@@ -123,77 +123,75 @@ const Home = () => {
             <br/>
             <br/>
 
-            <section>
+            <section className='home-transaction-section'>
 
-                <p className="home-transaction-h1">Deposit</p>
-                <br/>
-                <form onSubmit={handleDepositSubmit}>
+                <div className='home-transaction-card'>
+                    <p className="home-transaction-h1">Deposit</p>
+                    <br/>
+                    <form onSubmit={handleDepositSubmit}>
+                        <label htmlFor='amount' className='label'>Enter amount:</label>
+                        <br/>
+                        <input 
+                            id="deposit-amount" 
+                            type="number"
+                            onChange={(e) => setDepositAmount(e.target.value)}
+                            value = { depositAmount }
+                            required
+                            autoFocus
+                        />
+                        <br/>
+                        <button>Deposit RBT</button>
+                    </form>
+                </div>
 
-                    <label htmlFor='amount' className='label'>Enter amount:</label>
-                    <input 
-                        id="deposit-amount" 
-                        type="number"
-                        onChange={(e) => setDepositAmount(e.target.value)}
-                        value = { depositAmount }
-                        required
-                        autoFocus
-                    />
-
-                    <button>Deposit RBT</button>
-
-                </form>
-
-                <br/>
-                <br/>
-
-                <p className="home-transaction-h1">Withdraw</p>
-                <br/>
-                <form onSubmit={handleWithdrawSubmit}>
-
-                    <label htmlFor='amount' className='label'>Enter amount:</label>
-                    <input 
-                        id="withdraw-amount" 
-                        type="number"
-                        onChange={(e) => setWithdrawAmount(e.target.value)}
-                        value = { withdrawAmount }
-                        required
-                        autoFocus
-                    />
-
-                    <button>Withdraw RBT</button>
-
-                </form>
-
-                <br/>
-                <br/>
-
-                <p className="home-transaction-h1">Transfer</p>
-                <br/>
-                <form onSubmit={handleTransferSubmit}>
-
-                    <label htmlFor='amount' className='label'>Enter amount:</label>
-                    <input 
-                        id="transfer-amount" 
-                        type="number"
-                        onChange={(e) => setTransferAmount(e.target.value)}
-                        value = { transferAmount }
-                        required
-                        autoFocus
-                    />
-
-                    <label htmlFor='reciever' className='label'>Enter reciever address:</label>
-                    <input
-                        id="transfer-reciever"
-                        type="text"
-                        onChange={(e) => setTransferReciever(e.target.value)}
-                        value = { transferReciever }
-                        required
-                        autoFocus
-                    />  
-
-                    <button>Transfer RBT</button>
-
-            </form>
+                <div className='home-transaction-card'>
+                    <p className="home-transaction-h1">Withdraw</p>
+                    <br/>
+                    <form onSubmit={handleWithdrawSubmit}>
+                        <label htmlFor='amount' className='label'>Enter amount:</label>
+                        <br/>
+                        <input 
+                            id="withdraw-amount" 
+                            type="number"
+                            onChange={(e) => setWithdrawAmount(e.target.value)}
+                            value = { withdrawAmount }
+                            required
+                            autoFocus
+                        />
+                        <br/>
+                        <button>Withdraw RBT</button>
+                    </form>
+                </div>
+                
+                <div className='home-transaction-card'>
+                    <p className="home-transaction-h1">Transfer</p>
+                    <br/>
+                    <form onSubmit={handleTransferSubmit}>
+                        <label htmlFor='amount' className='label'>Enter amount:</label>
+                        <br/>
+                        <input 
+                            id="transfer-amount" 
+                            type="number"
+                            onChange={(e) => setTransferAmount(e.target.value)}
+                            value = { transferAmount }
+                            required
+                            autoFocus
+                        />
+                        <br/>
+                        <label htmlFor='reciever' className='label'>Enter reciever address:</label>
+                        <br/>
+                        <input
+                            id="transfer-reciever"
+                            type="text"
+                            onChange={(e) => setTransferReciever(e.target.value)}
+                            value = { transferReciever }
+                            required
+                            autoFocus
+                        />  
+                        <br/>
+                        <button>Transfer RBT</button>
+                    </form>
+                </div>
 
             </section>
 

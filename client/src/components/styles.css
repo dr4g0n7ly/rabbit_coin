@@ -6,7 +6,6 @@
 
 section {
     width: 100%;
-    border: 1px solid #000;
 }
 
 .number {
@@ -85,7 +84,7 @@ section {
     background-image: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
     border-radius: 0.8vw;
     border: 0.1vw solid #fff;
-    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 3, 0, 0.15));
 }
 
 .my-account-container {
@@ -98,6 +97,20 @@ section {
     .my-account-container {
         display: block;
     }
+}
+
+.home-transaction-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-transaction-card {
+    background-image: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+    border-radius: 0.8vw;
+    border: 0.1vw solid #fff;
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 3, 0, 0.15));
+    width: 30vw;
+    height: 28vw;
 }
 
 
