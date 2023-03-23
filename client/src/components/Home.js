@@ -73,24 +73,8 @@ const Home = () => {
 
         let transferComplete = await contract.transfer(transferReciever, transferAmountString)
         console.log("transferComplete: ", transferComplete)
+
     }
-
-
-
-    
-    // const animatePaths = () => {
-    //     let path = document.querySelector('path')
-    //     let pathLength = path.getTotalLength()
-    
-    //     path.style.strokeDasharray = pathLength + ' ' + pathLength
-    //     path.style.strokeDashoffset = pathLength
-    
-    //     window.addEventListener('scroll', () => {
-    //         var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-    //         var drawLength = pathLength * scrollPercentage
-    //         path.style.strokeDashoffset = pathLength - drawLength
-    //     })
-    // }
 
     return (
         <div className="Home">
@@ -193,36 +177,6 @@ const Home = () => {
                     </form>
                 </div>
 
-            </section>
-
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-
-            <section>
-                <svg width="90%" height="auto" viewBox="0 0 1329 600" fill="none" xmlns="http://www.w3.org/2000/svg">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <path d="M1 0V117.5H142.5V289.5M142.5 289.5V518.5H720.5V599.5M142.5 289.5H292" stroke="#FF009E" stroke-width="1.5" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <path d="M1144 288H1267V443V476.5M1267 476.5V486.5M1267 476.5L1214 503.5M1267 486.5V494.5L1200 530M1267 486.5L1318.5 513" stroke="#FF009E" stroke-width="1.5" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <path stroke="#FF009E" stroke-width="1.5" d="M1205 505a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <path stroke="#FF009E" stroke-width="1.5" d="M1191 532a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <path stroke="#FF009E" stroke-width="1.5" d="M1318 516a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-                </svg>
             </section>
 
         </div>
