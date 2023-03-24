@@ -45,7 +45,7 @@ const Transactions = () => {
         .then((data) => setBlockNumber(data.result))
         
         const filter = contract.filters.Transfered(null, null, null)
-        const results = await contract.queryFilter(filter,blockNumber-1000,blockNumber)
+        const results = await contract.queryFilter(filter,blockNumber-7000,blockNumber)
         setTransactions(results)
         console.log(transactions)
     }
