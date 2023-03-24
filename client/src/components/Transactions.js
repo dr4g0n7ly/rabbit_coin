@@ -3,7 +3,12 @@ import { AccountContext } from '../AccountContext'
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 
+const blockUrl = "https://api-goerli.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=T8SCBJ2NYE2Q4C2Q55E5JQZ3FYQYUEVUCZ"
+
 const Transactions = () => {
+
+    const [blockNumber, setBlockNumber] = useState()
+    const [transactions, setTransactions] = useState([])
 
     const [balance, setBalance] = useState(0)
     const {account} = useContext(AccountContext)
@@ -28,9 +33,27 @@ const Transactions = () => {
         setBalance(parseInt(bal._hex))
     }
 
+    const getTransactions = async () => {
+        const ethers = require("ethers")
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, provider)
+
+        console.log(contract.filters)
+
+        fetch(blockUrl)
+        .then((response) => response.json())
+        .then((data) => setBlockNumber(data.result))
+        
+        const filter = contract.filters.Transfered(null, null, null)
+        const results = await contract.queryFilter(filter,blockNumber-1000,blockNumber)
+        setTransactions(results)
+        console.log(transactions)
+    }
+
     useEffect(() => {
         getBalance()
-    })
+        getTransactions()
+    },[])
 
     const handleDepositSubmit = async (e) => {
         e.preventDefault()
@@ -70,7 +93,7 @@ const Transactions = () => {
 
         let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
 
-        const transferAmountString = transferAmount.toString()
+        const transferAmountString = transferAmount.toString() + "0000000"
 
         let transferComplete = await contract.transfer(transferReciever, transferAmountString)
         console.log("transferComplete: ", transferComplete)
@@ -130,6 +153,7 @@ const Transactions = () => {
                             </div>
                         </div>
                     </div>
+
 
                 </div>
                 <div className="Funds">
