@@ -65,9 +65,10 @@ const Transactions = () => {
 
         let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
 
-        const depositPriceString = depositAmount.toString() + "000000000000"
+        const depositPriceString = depositAmount.toString() + "000000000000" + "0000000"
+        const depositAmountString = depositAmount.toString() + "0000000"
 
-        let depositComplete = await contract.deposit(depositAmount.toString() + "0000000", {value: depositPriceString})
+        let depositComplete = await contract.deposit(depositAmountString, {value: depositPriceString})
         console.log("depositComplete: ", depositComplete)
     }
 
