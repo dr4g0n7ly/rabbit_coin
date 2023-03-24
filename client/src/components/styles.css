@@ -165,9 +165,17 @@ a {
     margin-left: 20px;
 }
 
-.amount-col {
-    position: relative;
-    right: 20;
+.trs-row {
+    border: 1px solid #1f1f1f;
+    display: grid;
+    grid-template-columns: 1.1fr 4fr 1.5fr 1.5fr;
+}
+
+.trs-el {
+    font-weight: 500;
+    color: #000;
+    font-size: 14px;
+    border-top: 1px solid #000;
 }
 
 .Funds {
