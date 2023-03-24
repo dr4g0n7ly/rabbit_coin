@@ -1,6 +1,6 @@
 const Loans = () => {
     return (
-        <div>Loans</div>
+        <div className="Loans">Loans</div>
     )
 }
 
