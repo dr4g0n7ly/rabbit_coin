@@ -30,7 +30,7 @@ const Transactions = () => {
  
         let bal = await contract.balanceOf(account)
         console.log("balance: "+ bal)
-        setBalance(parseInt(bal._hex))
+        setBalance(parseInt(bal._hex)/10000000)
     }
 
     const getTransactions = async () => {
@@ -38,7 +38,7 @@ const Transactions = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, provider)
 
-        console.log(contract.filters)
+        // console.log(contract.filters)
 
         fetch(blockUrl)
         .then((response) => response.json())
@@ -47,17 +47,18 @@ const Transactions = () => {
         const filter = contract.filters.Transfered(null, null, null)
         const results = await contract.queryFilter(filter,blockNumber-7000,blockNumber)
         setTransactions(results)
-        console.log(transactions)
     }
 
     useEffect(() => {
         getBalance()
+    })
+
+    useEffect(() => {
         getTransactions()
-    },[])
+    }, [])
 
     const handleDepositSubmit = async (e) => {
         e.preventDefault()
-        console.log('handledepositsubmit')
         const ethers = require("ethers")
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -66,7 +67,7 @@ const Transactions = () => {
 
         const depositPriceString = depositAmount.toString() + "000000000000"
 
-        let depositComplete = await contract.deposit(depositAmount.toString(), {value: depositPriceString})
+        let depositComplete = await contract.deposit(depositAmount.toString() + "0000000", {value: depositPriceString})
         console.log("depositComplete: ", depositComplete)
     }
 
@@ -138,21 +139,8 @@ const Transactions = () => {
                     </div>
 
                     <div className="transaction-list">
-                        <div className="trs-row">
-                            <div className="trs-el block-col">
-                                <p className="">Block</p>
-                            </div>
-                            <div className="trs-el">
-                                <p className="">Address</p>
-                            </div>
-                            <div className="trs-el">
-                                <p className="">Type</p>
-                            </div>
-                            <div className="trs-el">
-                                <p className="">Amount</p>
-                            </div>
-                        </div>
                         {transactions.map((trs) => {
+                            const key = trs.transactionHash
                             const blockNumber = trs.blockNumber
                             var address = null
                             var type = null
@@ -167,18 +155,19 @@ const Transactions = () => {
                             const amount = Number(trs.args.amount._hex)/10000000
                  
                             if (address) {
+                                console.log("yes")
                                 return (
-                                    <TransactionCard block={blockNumber} address={address} type={type} amount={amount} />
+                                    <TransactionCard key={key} block={blockNumber} address={address} type={type} amount={amount}/>
                                 )
                             }
                             else {
+                                console.log("no")
                                 return (
                                     <div/>
                                 )
                             }
                         })}
                     </div>
-
 
                 </div>
                 <div className="Funds">
