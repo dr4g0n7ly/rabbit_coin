@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { AccountContext } from '../AccountContext'
+import TransactionCard from './TransactionCard'
 
 import RabbitCoinJSON from '../RabbitCoin.json'
-
 const blockUrl = "https://api-goerli.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=T8SCBJ2NYE2Q4C2Q55E5JQZ3FYQYUEVUCZ"
 
 const Transactions = () => {
@@ -152,6 +152,31 @@ const Transactions = () => {
                                 <p className="">Amount</p>
                             </div>
                         </div>
+                        {transactions.map((trs) => {
+                            const blockNumber = trs.blockNumber
+                            var address = null
+                            var type = null
+                            if (JSON.stringify(account).toLowerCase() === JSON.stringify(trs.args.from).toLowerCase()) {
+                                address = JSON.stringify(trs.args.to)
+                                type = "Transfer RBT"
+                            } 
+                            else if (JSON.stringify(account).toLowerCase() === JSON.stringify(trs.args.to).toLowerCase()) {
+                                address = JSON.stringify(trs.args.from).toLowerCase()
+                                type = "Recieve RBT"
+                            }
+                            const amount = Number(trs.args.amount._hex)/10000000
+                 
+                            if (address) {
+                                return (
+                                    <TransactionCard block={blockNumber} address={address} type={type} amount={amount} />
+                                )
+                            }
+                            else {
+                                return (
+                                    <div/>
+                                )
+                            }
+                        })}
                     </div>
 
 
