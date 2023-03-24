@@ -1,7 +1,10 @@
 /* GENERAL */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,300&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
 body {
     background-color: white;
     border: 1;
+    font-family: 'Work Sans', sans-serif;
 }
 
 /* SIDEBAR */
@@ -17,6 +20,7 @@ body {
 .sidebar-logo {
     display: flex;
     margin: 12px;
+    margin-top: 20px;
     border: 1px solid #1f1f1f;
 }
 
@@ -39,26 +43,52 @@ body {
 .side-links {
     border: 1px solid #1f1f1f;
     margin: 12px;
-    margin-top: 4vh;
+    margin-top: 5vh;
 }
 
 .side-link {
     display: flex;
     border: 1px solid #1f1f1f;
     margin-top: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     height: 50px;
+}
+
+.side-link:hover {
+    background-color: #DDFF55;
 }
 
 .side-link-img {
     width: 23px;
     height: 23px;
     margin: auto;
-    margin-left: 10px;
+    margin-left: 8px;
     margin-right: 6px;
 }
 
 .side-link-text {
     text-decoration: none;
-    
+    color: #000;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.side-user {
+    display: flex;
+    border-top: 1px solid #000;
+    position: fixed;
+    width: 160px;
+    left: 20px;
+    bottom: 8px;
+}
+
+.side-user-img {
+    width: 36px;
+    height: 36px;
+    margin: auto;
+    margin-left: 8px;
+    margin-right: 8px;
 }

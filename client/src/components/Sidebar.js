@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AccountContext } from '../AccountContext'
 
 import './styles.css'
@@ -8,11 +8,26 @@ import rflogo from '../components/public/icons/rabbit-finance.png'
 import trsicon from '../components/public/icons/transaction.png'
 import lnsicon from '../components/public/icons/loan.png'
 import stsicon from '../components/public/icons/statistics.png'
+import usricon from '../components/public/icons/user.png'
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 
 const Sidebar = () => {
     const {account, setAccount} = useContext(AccountContext)
+
+    useEffect(() => {      
+        const getAccounts = async () => {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'})
+            console.log(accounts)
+            setAccount(accounts[0]);
+        }
+
+        getAccounts()
+
+        return () => {
+            console.log("account: ",account)
+        }
+    });
 
     const web3Handler = async () => {
 
@@ -23,8 +38,6 @@ const Sidebar = () => {
                 params: [{ chainId: '0x5' }],
             })
         }  
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'})
-        setAccount(accounts[0]);
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
   
@@ -37,6 +50,23 @@ const Sidebar = () => {
         const contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
         console.log("rabbit coin :", contract)
 
+    }
+
+    const Login = () => {
+        if (account) {
+            return (
+                <div className='side-user'>
+                    <img className='side-user-img' src={usricon}/>
+                    <p>{account.slice(0,5)}...{account.slice(account.length-3)}</p>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <button>Connect wallet</button>
+                </div>
+            )
+        }
     }
 
     return (
@@ -59,6 +89,10 @@ const Sidebar = () => {
                     <img className='side-link-img' src={stsicon} alt='statistics icon'/>
                     <p className='side-link-text'>Token statistics</p>
                 </Link>
+            </div>
+
+            <div className='side-login'>
+                <Login/>
             </div>
            {/* <Link className='Navbar-signedin number' onClick={web3Handler}>{account.slice(0, 5)+'...'}</Link> */}
         </div>
