@@ -58,6 +58,9 @@ body {
     background-color: #DDFF55;
 }
 
+.side-link:focus {
+    background-color: #DDFF55;
+}
 .side-link-img {
     width: 23px;
     height: 23px;

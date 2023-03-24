@@ -56,7 +56,7 @@ const Sidebar = () => {
         if (account) {
             return (
                 <div className='side-user'>
-                    <img className='side-user-img' src={usricon}/>
+                    <img className='side-user-img' src={usricon} alt='user icon'/>
                     <p>{account.slice(0,5)}...{account.slice(account.length-3)}</p>
                 </div>
             )
@@ -77,15 +77,15 @@ const Sidebar = () => {
             </div>
 
             <div className='side-links'>
-                <Link className='side-link'>
+                <Link className='side-link' to="/">
                     <img className='side-link-img' src={trsicon} alt='transaction icon'/>
                     <p className='side-link-text'>Transactions</p>
                 </Link>
-                <Link className='side-link'>
+                <Link className='side-link' to="/loan">
                     <img className='side-link-img' src={lnsicon} alt='loan icon'/>
                     <p className='side-link-text'>Loans</p>
                 </Link>
-                <Link className='side-link'>
+                <Link className='side-link' id='side-link-3'>
                     <img className='side-link-img' src={stsicon} alt='statistics icon'/>
                     <p className='side-link-text'>Token statistics</p>
                 </Link>
