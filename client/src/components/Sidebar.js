@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AccountContext } from '../AccountContext'
 
+import './styles.css'
+import rflogo from '../components/public/icons/rabbit-finance.png'
+import trsicon from '../components/public/icons/transaction.png'
+import lnsicon from '../components/public/icons/loan.png'
+import stsicon from '../components/public/icons/statistics.png'
+
 import RabbitCoinJSON from '../RabbitCoin.json'
 
 const Sidebar = () => {
@@ -33,19 +39,28 @@ const Sidebar = () => {
 
     }
 
-    if (account) {
-        return (
-            <div className="Navbar">
-                <p className='Navbar-logo'>Rabbit$</p>
-                <Link className='Navbar-signedin number' onClick={web3Handler}>{account.slice(0, 5)+'...'}</Link>
-            </div>
-        )
-    }
-
     return (
-        <div className="Navbar">
-            <p className='Navbar-logo'>Rabbit$</p>
-            <Link className='Navbar-signin' onClick={web3Handler}>Connect wallet</Link>
+        <div className="Sidebar">
+            <div className='sidebar-logo'>
+                <img className='sidebar-logo-img' src={rflogo}/>
+                <p className='sidebar-logo-text'>Rabbit$</p>
+            </div>
+
+            <div className='side-links'>
+                <Link className='side-link'>
+                    <img className='side-link-img' src={trsicon} alt='transaction icon'/>
+                    <p className='side-link-text'>Transactions</p>
+                </Link>
+                <Link className='side-link'>
+                    <img className='side-link-img' src={lnsicon} alt='loan icon'/>
+                    <p className='side-link-text'>Loans</p>
+                </Link>
+                <Link className='side-link'>
+                    <img className='side-link-img' src={stsicon} alt='statistics icon'/>
+                    <p className='side-link-text'>Token statistics</p>
+                </Link>
+            </div>
+           {/* <Link className='Navbar-signedin number' onClick={web3Handler}>{account.slice(0, 5)+'...'}</Link> */}
         </div>
     )
 }

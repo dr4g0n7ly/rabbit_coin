@@ -1,0 +1,64 @@
+/* GENERAL */
+body {
+    background-color: white;
+    border: 1;
+}
+
+/* SIDEBAR */
+.Sidebar {
+    width: 200px;
+    height: 100vh;
+    border: 2px solid #1f1f1f;
+    position: fixed;
+    left:0;
+    top:0;
+}
+
+.sidebar-logo {
+    display: flex;
+    margin: 12px;
+    border: 1px solid #1f1f1f;
+}
+
+.sidebar-logo-img {
+    position: relative;
+    width: 33.68px;
+    height: 35.18px;
+    left: 20px;
+}
+
+.sidebar-logo-text {
+    position: relative;
+    font-family: 'Ageo Personal Use SemiBold';
+    font-size: 24px;
+    margin: 0;
+    top: 7px;
+    left: 26px;
+}
+
+.side-links {
+    border: 1px solid #1f1f1f;
+    margin: 12px;
+    margin-top: 4vh;
+}
+
+.side-link {
+    display: flex;
+    border: 1px solid #1f1f1f;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    height: 50px;
+}
+
+.side-link-img {
+    width: 23px;
+    height: 23px;
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 6px;
+}
+
+.side-link-text {
+    text-decoration: none;
+    
+}

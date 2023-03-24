@@ -3,18 +3,14 @@ import { AccountProvider } from './AccountContext'
 
 import Sidebar from './components/Sidebar'
 
-import './App.css';
-
 function App() {
 
   return (
     <AccountProvider>
       <BrowserRouter>
-        <div className='App'>
           <Sidebar/>
-          <Routes>
+            <Routes>
           </Routes>
-        </div>
       </BrowserRouter>
     </AccountProvider>
   );
