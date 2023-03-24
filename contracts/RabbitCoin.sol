@@ -7,7 +7,8 @@ contract RabbitCoin {
     string private constant _name = "RabbitCoin";
     string private constant _symbol = "RBT";
 
-    uint256 private constant _totalSupply = 1000 * 10 ** 18;
+    uint256 private constant _totalSupply = 10000000000 * 10 ** 7;
+    uint8 private constant _decimals = 7;
 
     uint256 private constant _price = 1000000000000 wei;
 
@@ -39,6 +40,10 @@ contract RabbitCoin {
 
     function totalSupply() public pure returns (uint256) {
        return _totalSupply;
+    }
+
+    function decimals() public pure returns (uint8) {
+        return _decimals;
     }
 
 

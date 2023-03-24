@@ -70,7 +70,7 @@ const Transactions = () => {
 
         let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
 
-        const transferAmountString = ethers.utils.parseUnits(transferAmount.toString(),18)
+        const transferAmountString = transferAmount.toString()
 
         let transferComplete = await contract.transfer(transferReciever, transferAmountString)
         console.log("transferComplete: ", transferComplete)
