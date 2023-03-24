@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ethers } from 'ethers';
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
@@ -6,10 +5,7 @@ import { AccountContext } from '../AccountContext'
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 
-import './styles.css'
-
-const Navbar = () => {
-
+const Sidebar = () => {
     const {account, setAccount} = useContext(AccountContext)
 
     const web3Handler = async () => {
@@ -54,4 +50,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Sidebar

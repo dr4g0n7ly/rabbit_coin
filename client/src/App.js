@@ -1,9 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AccountProvider } from './AccountContext'
 
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Upload from './components/Upload'
+import Sidebar from './components/Sidebar'
 
 import './App.css';
 
@@ -13,12 +11,8 @@ function App() {
     <AccountProvider>
       <BrowserRouter>
         <div className='App'>
-          <br/>
-          <br/>
-          <br/>
-          <Navbar/>
+          <Sidebar/>
           <Routes>
-            <Route path="/home" element={<Home/>} />
           </Routes>
         </div>
       </BrowserRouter>
