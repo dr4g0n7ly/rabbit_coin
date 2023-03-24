@@ -31,8 +31,24 @@ const Transactions = () => {
                     <div className="main-trs-head">
                         <p className="trs-head">Type</p>
                     </div>
-                    <div className="main-trs-head amount-col">
+                    <div className="main-trs-head">
                         <p className="trs-head">Amount</p>
+                    </div>
+                </div>
+                <div className="transaction-list">
+                    <div className="trs-row">
+                        <div className="trs-el block-col">
+                            <p className="">Block</p>
+                        </div>
+                        <div className="trs-el">
+                            <p className="">Address</p>
+                        </div>
+                        <div className="trs-el">
+                            <p className="">Type</p>
+                        </div>
+                        <div className="trs-el">
+                            <p className="">Amount</p>
+                        </div>
                     </div>
                 </div>
             </div>
