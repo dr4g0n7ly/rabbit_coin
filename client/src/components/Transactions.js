@@ -35,6 +35,7 @@ const Transactions = () => {
                         <p className="trs-head">Amount</p>
                     </div>
                 </div>
+
                 <div className="transaction-list">
                     <div className="trs-row">
                         <div className="trs-el block-col">
@@ -51,6 +52,7 @@ const Transactions = () => {
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div className="Funds">Deposit</div>
         </div>
