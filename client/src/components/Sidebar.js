@@ -62,8 +62,8 @@ const Sidebar = () => {
             )
         } else {
             return (
-                <div>
-                    <button>Connect wallet</button>
+                <div className='no-login'>
+                    <button className='side-user-button' onClick={web3Handler}>Connect wallet</button>
                 </div>
             )
         }
@@ -94,7 +94,6 @@ const Sidebar = () => {
             <div className='side-login'>
                 <Login/>
             </div>
-           {/* <Link className='Navbar-signedin number' onClick={web3Handler}>{account.slice(0, 5)+'...'}</Link> */}
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { AccountContext } from '../AccountContext'
 import TransactionCard from './TransactionCard'
+import RequestLogin from './RequestLogin'
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 const blockUrl = "https://api-goerli.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=T8SCBJ2NYE2Q4C2Q55E5JQZ3FYQYUEVUCZ"
@@ -257,9 +258,7 @@ const Transactions = () => {
     }
     else {
         return (
-            <div>
-                <h1>PLEASE CONNECT ACCOUNT</h1>
-            </div>
+            <RequestLogin/>
         )
     }
 }
