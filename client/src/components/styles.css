@@ -311,3 +311,37 @@ a {
     }
   }
   
+  /*  LOANS */
+
+  .Loan-page {
+    margin-left: 220px;
+    margin-right: 380px;
+  }
+
+  /* LOAN FORM */
+
+  .Loan-form {
+    width: 340px;
+    border: #fff 1px solid;
+    background-color: #F3F4EF;
+    font-family: 'Work Sans', sans-serif;
+    height: 98vh;
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    padding-left: 20px;
+}
+
+input::file-selector-button {
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    background-color: black;
+    width: 150px;
+    height: 36px;
+    border-radius: 4px;
+}
+
+.input-file {
+    margin-top: 24px;
+    font-family: 'Work Sans', sans-serif;
+}
