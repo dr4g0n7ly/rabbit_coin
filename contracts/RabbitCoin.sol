@@ -99,31 +99,6 @@ contract RabbitCoin {
         return loanList;
     }
 
-    function getLoansByUser() public view returns (LoanToken[] memory) {
-        uint totalItemCount = _tokenIds.current();
-        uint itemCount = 0;
-        uint currentIndex = 0;
-        uint currentId;
-
-        for(uint i=0; i < totalItemCount; i++)
-        {
-            if(loans[i+1].borrower == msg.sender){
-                itemCount += 1;
-            }
-        }
-
-        LoanToken[] memory loanList = new LoanToken[](itemCount);
-        for(uint i=0; i < totalItemCount; i++) {
-            if(loans[i+1].borrower == msg.sender) {
-                currentId = i+1;
-                LoanToken storage currentItem = loans[currentId];
-                loanList[currentIndex] = currentItem;
-                currentIndex += 1;
-            }
-        }
-        return loanList;
-    }
-
 
 
     // WRITE --------
