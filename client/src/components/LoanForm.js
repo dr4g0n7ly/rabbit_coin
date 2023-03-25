@@ -12,13 +12,17 @@ const APIKEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGF
 const LoanForm =() => {
 
     const {account} = useContext(AccountContext)
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [uploadedFile, setUploadedFile] = useState();
-    const [loanDetails, setLoanDetails] = useState();
-    const [imageView, setImageView] = useState();
-    const [metaDataURL, setMetaDataURl] = useState();
-    const [txURL, setTxURL] = useState();
-    const [txStatus, setTxStatus] = useState();
+    const [uploadedFile, setUploadedFile] = useState()
+    const [loanDetails, setLoanDetails] = useState()
+    const [principle, setPrinciple] = useState(0)
+    const [totalRepay, setTotalRepay] = useState(0)
+    const [duration, setDuration] = useState(0)
+
+    const [errorMessage, setErrorMessage] = useState(null)
+    const [imageView, setImageView] = useState()
+    const [metaDataURL, setMetaDataURl] = useState()
+    const [txURL, setTxURL] = useState()
+    const [txStatus, setTxStatus] = useState()
 
     const handleFileUpload = (event) => {
         console.log("file is uploaded");
@@ -111,11 +115,20 @@ const LoanForm =() => {
 
                 <p className="home-transaction-h1">Request new Loan</p>
 
+                <p style={{marginBottom:'4px'}}>Loan Amount: </p>
+                <input type="number" name="amount" onChange={(event)=>{setPrinciple(event.target.value)}}/>
+
+                <p style={{marginBottom:'4px'}}>Total pay-off Amount: </p>
+                <input type="number" name="payamount" onChange={(event)=>{setTotalRepay(event.target.value)}}/>
+           
+                <p style={{marginBottom:'4px'}}>Duration (in blocks): </p>
+                <input type="number" name="duration" onChange={(event)=>{setDuration(event.target.value)}}/>
+           
                 <p style={{marginBottom:'4px'}}>Collateral details: </p>
                 <textarea
                     value={loanDetails}
                     onChange={handleDetailsChange}
-                    rows={24}
+                    rows={20}
                     cols={40}
                 />
 

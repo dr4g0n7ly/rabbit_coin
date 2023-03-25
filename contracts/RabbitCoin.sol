@@ -1,16 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
+import "@openzeppelin/contracts/utils/Counters.sol";
+
 contract RabbitCoin {
+
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
 
     address public minter;
     string private constant _name = "RabbitCoin";
     string private constant _symbol = "RBT";
 
-    uint256 private constant _totalSupply = 10000000000 * 10 ** 7;
-    uint8 private constant _decimals = 7;
+    uint256 private constant _totalSupply = 10 ** 18;
+    uint8 private constant _decimals = 0;
 
-    uint256 private constant _price = 1000000000000 wei;
+    uint256 private constant _price = 100000 wei;
 
     mapping(address => uint256) public balances;
 
@@ -21,6 +26,18 @@ contract RabbitCoin {
         balances[minter] += amount_;
         emit minted(msg.sender, amount_);
     }
+
+    struct LoanToken {
+        uint256 tokenId;
+        address payable borrower;
+        uint256 principle;
+        uint256 totalPayback;
+        uint256 dueDate;
+        uint8 status;
+    }
+
+    mapping(uint256 => LoanToken) private loans;
+    mapping(uint256 => string) private tokenURIs;
 
     constructor() {
         minter = msg.sender;
@@ -52,6 +69,54 @@ contract RabbitCoin {
     function balanceOf(address tokenOwner_) public view returns (uint256) {
         return balances[tokenOwner_];
     }
+
+    function getCurrentBlock() public view returns (uint256) {
+        return block.number;
+    }
+
+    function getTokenURI(uint256 tokenID) public view returns (string memory) {
+        return tokenURIs[tokenID];
+    }
+
+    function getAllLoans() public view returns (LoanToken[] memory) {
+        uint loanCount = _tokenIds.current();
+        LoanToken[] memory loanList = new LoanToken[](loanCount);
+        uint currentIndex = 0;
+        uint currentId;
+        for (uint i=0; i<loanCount; i++) {
+            currentId = i+1;
+            LoanToken storage currentItem = loans[currentId];
+            loanList[currentIndex] = currentItem;
+            currentIndex++;
+        }
+        return loanList;
+    }
+
+    function getLoansByUser() public view returns (LoanToken[] memory) {
+        uint totalItemCount = _tokenIds.current();
+        uint itemCount = 0;
+        uint currentIndex = 0;
+        uint currentId;
+
+        for(uint i=0; i < totalItemCount; i++)
+        {
+            if(loans[i+1].borrower == msg.sender){
+                itemCount += 1;
+            }
+        }
+
+        LoanToken[] memory loanList = new LoanToken[](itemCount);
+        for(uint i=0; i < totalItemCount; i++) {
+            if(loans[i+1].borrower == msg.sender) {
+                currentId = i+1;
+                LoanToken storage currentItem = loans[currentId];
+                loanList[currentIndex] = currentItem;
+                currentIndex += 1;
+            }
+        }
+        return loanList;
+    }
+
 
 
     // WRITE --------
@@ -109,6 +174,31 @@ contract RabbitCoin {
         payable(msg.sender).transfer(amount_ * _price);
         
         return true;
+    }
+
+
+    event LoanRequested(address by, uint256 loanAmount, uint256 repayAmount, uint256 dueBlock);
+
+    function requestLoan(string memory tokenURI, uint256 principle, uint256 totalPayback, uint256 duration) public returns (uint256) {
+        require(totalPayback >= principle + (principle/10), "Total payback must be at least 10% more than borrowed principle");
+
+        _tokenIds.increment();
+        uint256 newTokenId = _tokenIds.current();
+
+        loans[newTokenId] = LoanToken (
+            newTokenId,
+            payable(msg.sender),
+            principle,
+            totalPayback,
+            block.number + duration,
+            1
+        );
+
+        tokenURIs[newTokenId] = tokenURI;
+
+        emit LoanRequested(msg.sender, principle, totalPayback, block.number + duration);
+
+        return newTokenId;
     }
 
 }
