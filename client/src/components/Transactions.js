@@ -11,7 +11,9 @@ const blockUrl = "https://api-goerli.etherscan.io/api?module=proxy&action=eth_bl
 const Transactions = () => {
 
     const [blockNumber, setBlockNumber] = useState()
-    const [transactions, setTransactions] = useState([])
+    const [transfers, setTransfers] = useState([])
+    const [deposits, setDeposits] = useState([])
+    const [withdraws, setWithdraws] = useState([])
 
     const [balance, setBalance] = useState(0)
     const {account} = useContext(AccountContext)
@@ -41,15 +43,23 @@ const Transactions = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, provider)
 
-        // console.log(contract.filters)
+        console.log(contract.filters)
 
         fetch(blockUrl)
         .then((response) => response.json())
         .then((data) => setBlockNumber(data.result))
         
-        const filter = contract.filters.Transfered(null, null, null)
-        const results = await contract.queryFilter(filter,blockNumber-7000,blockNumber)
-        setTransactions(results)
+        const transferFilter = contract.filters.Transfered(null, null, null)
+        const transferResults = await contract.queryFilter(transferFilter,blockNumber-7000,blockNumber)
+        setTransfers(transferResults)
+
+        const depositFilter = contract.filters.Deposited(null, null, null)
+        const depositResults = await contract.queryFilter(depositFilter,blockNumber-7000,blockNumber)
+        setDeposits(depositResults)
+
+        const withdrawFilter = contract.filters.Withdrew(null, null, null)
+        const withdrawResults = await contract.queryFilter(withdrawFilter,blockNumber-7000,blockNumber)
+        setWithdraws(withdrawResults)
     }
 
     useEffect(() => {
@@ -109,7 +119,7 @@ const Transactions = () => {
 
         let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
 
-        const transferAmountString = transferAmount.toString() + "0000000"
+        const transferAmountString = transferAmount.toString()
 
         let transferComplete = await contract.transfer(transferReciever, transferAmountString)
         console.log("transferComplete: ", transferComplete)
@@ -156,7 +166,7 @@ const Transactions = () => {
                     <div className='trs-head-line'></div>
 
                     <div className="transaction-list">
-                        {transactions.map((trs) => {
+                        {transfers.map((trs) => {
                             const key = trs.transactionHash
                             const blockNumber = trs.blockNumber
                             var address = null
@@ -169,18 +179,48 @@ const Transactions = () => {
                                 address = JSON.stringify(trs.args.from).toLowerCase()
                                 type = "Recieve RBT"
                             }
-                            const amount = Number(trs.args.amount._hex)/10000000
+                            const amount = Number(trs.args.amount._hex)
                  
                             if (address) {
-                                console.log("yes")
                                 return (
                                     <TransactionCard key={key} block={blockNumber} address={address} type={type} amount={amount}/>
                                 )
                             }
                             else {
-                                console.log("no")
                                 return (
                                     <div/>
+                                )
+                            }
+                        })}
+                        {deposits.map((trs) => {
+                            const key = trs.transactionHash
+                            const blockNumber = trs.blockNumber
+                            var address = null
+                            const type = "Deposit RBT"
+                            if (JSON.stringify(account).toLowerCase() === JSON.stringify(trs.args.from).toLowerCase()) {
+                                address = JSON.stringify(trs.args.from)
+                            } 
+                            const amount = Number(trs.args.amount._hex)
+                 
+                            if (address) {
+                                return (
+                                    <TransactionCard key={key} block={blockNumber} address={address} type={type} amount={amount}/>
+                                )
+                            }
+                        })}
+                        {withdraws.map((trs) => {
+                            const key = trs.transactionHash
+                            const blockNumber = trs.blockNumber
+                            var address = null
+                            const type = "Deposit RBT"
+                            if (JSON.stringify(account).toLowerCase() === JSON.stringify(trs.args.from).toLowerCase()) {
+                                address = JSON.stringify(trs.args.from)
+                            } 
+                            const amount = Number(trs.args.amount._hex)
+                 
+                            if (address) {
+                                return (
+                                    <TransactionCard key={key} block={blockNumber} address={address} type={type} amount={amount}/>
                                 )
                             }
                         })}

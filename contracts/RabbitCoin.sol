@@ -123,6 +123,7 @@ contract RabbitCoin {
 
     error InsufficientBalance(uint256 requested, uint256 available);
 
+    event Transactioned(address from, address to,  uint256 amount, uint8 transactionType, uint256 block);
 
     event Transfered(address from, address to, uint256 amount);
 
@@ -138,6 +139,8 @@ contract RabbitCoin {
         balances[receiver_] += amount_;
 
         emit Transfered(msg.sender, receiver_, amount_);
+        emit Transactioned(msg.s
+        , to, amount, transactionType, block);
 
         return true;
     }
@@ -172,6 +175,8 @@ contract RabbitCoin {
         balances[minter] += amount_;
 
         payable(msg.sender).transfer(amount_ * _price);
+
+        emit Withdrew(msg.sender, amount_, _price * amount_);
         
         return true;
     }
