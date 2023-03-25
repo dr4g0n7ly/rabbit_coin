@@ -5,7 +5,6 @@ import LoanCard from "./LoanCard"
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 import refresh from './public/icons/refresh.png'
-import { json } from "react-router-dom"
 
 const Loans = () => {
 
