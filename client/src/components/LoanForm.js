@@ -115,10 +115,11 @@ const LoanForm =() => {
         
         // //2. Mint a NFT token on Your Smart contract
         const loanToken = await requestContract(metaData);
-        setTxStatus("Loan request successful")
-        toast.success(txStatus , {
-            position: toast.POSITION.TOP_CENTER
-        });
+        if (loanToken) {
+            toast.success(txStatus , {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
         console.log(loanToken)
         setErrorMessage("")
         setTxStatus("");
