@@ -33,7 +33,7 @@ const Transactions = () => {
  
         let bal = await contract.balanceOf(account)
         console.log("balance: "+ bal)
-        setBalance(parseInt(bal._hex)/10000000)
+        setBalance(parseInt(bal._hex))
     }
 
     const getTransactions = async () => {
@@ -72,6 +72,8 @@ const Transactions = () => {
 
             const depositPriceString = depositAmount.toString() + "00000"
             const depositAmountString = depositAmount.toString()
+
+            console.log("depositAmountString: " + depositAmountString)
 
             let depositComplete = await contract.deposit(depositAmountString, {value: depositPriceString})
             console.log("depositComplete: ", depositComplete)  
