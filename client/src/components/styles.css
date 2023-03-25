@@ -194,6 +194,40 @@ a {
 
 .Funds {
     border: #1f1f1f 1px solid;
+    background-color: #F3F4EF;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.fund-card {
+    width: 320px;
+    margin: 0 auto;
+    border-bottom: #000 1px solid;
+    padding: 8px;
+}
+
+.home-transaction-h1 {
+    font-size: 24px;
+}
+
+.fund-label {
+    font-weight: 600;
+}
+
+.fund-input {
+    margin: 0px;
+    padding: 8px;
+    width: 300px;
+    height: 16px;
+    margin: 8px 0px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.fund-button {
+    margin: 0px;
+    width: 320px;
+    height: 34px;
+    margin: 8px 0px;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* REQUEST LOGIN */

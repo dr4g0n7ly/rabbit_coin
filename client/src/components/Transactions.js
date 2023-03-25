@@ -189,80 +189,71 @@ const Transactions = () => {
 
                     <ToastContainer />
 
-                    <br/>
-                    <br/>
-
                     <section>
+                        <div className='fund-card'>
+                            <p className="home-transaction-h1">Deposit</p>
+                            <form onSubmit={handleDepositSubmit}>
+                                <label htmlFor='amount' className='fund-label'>enter amount:</label>
+                                <br/>
+                                <input 
+                                    className='fund-input'
+                                    id="deposit-amount" 
+                                    type="number"
+                                    onChange={(e) => setDepositAmount(e.target.value)}
+                                    value = { depositAmount }
+                                    required
+                                    autoFocus
+                                />
+                                <button className='fund-button' >Deposit ETH</button>
+                            </form>
+                        </div>
 
-                        <p className="home-transaction-h1">Deposit</p>
-                        <br/>
-                        <form onSubmit={handleDepositSubmit}>
+                        <div className='fund-card'>
+                            <p className="home-transaction-h1">Withdraw</p>
+                            <form onSubmit={handleWithdrawSubmit}>
+                                <label htmlFor='amount' className='fund-label'>enter amount:</label>
+                                <br/>
+                                <input 
+                                    className='fund-input'
+                                    id="withdraw-amount" 
+                                    type="number"
+                                    onChange={(e) => setWithdrawAmount(e.target.value)}
+                                    value = { withdrawAmount }
+                                    required
+                                    autoFocus
+                                />
+                                <button className='fund-button'>Withdraw ETH</button>
+                            </form>
+                        </div>
 
-                            <label htmlFor='amount' className='label'>Enter amount:</label>
-                            <input 
-                                id="deposit-amount" 
-                                type="number"
-                                onChange={(e) => setDepositAmount(e.target.value)}
-                                value = { depositAmount }
-                                required
-                                autoFocus
-                            />
-
-                            <button>Deposit ETH</button>
-
-                        </form>
-
-                        <br/>
-                        <br/>
-
-                        <p className="home-transaction-h1">Withdraw</p>
-                        <br/>
-                        <form onSubmit={handleWithdrawSubmit}>
-
-                            <label htmlFor='amount' className='label'>Enter amount:</label>
-                            <input 
-                                id="withdraw-amount" 
-                                type="number"
-                                onChange={(e) => setWithdrawAmount(e.target.value)}
-                                value = { withdrawAmount }
-                                required
-                                autoFocus
-                            />
-
-                            <button>Withdraw ETH</button>
-
-                        </form>
-
-                        <br/>
-                        <br/>
-
-                        <p className="home-transaction-h1">Transfer</p>
-                        <br/>
-                        <form onSubmit={handleTransferSubmit}>
-
-                            <label htmlFor='amount' className='label'>Enter amount:</label>
-                            <input 
-                                id="transfer-amount" 
-                                type="number"
-                                onChange={(e) => setTransferAmount(e.target.value)}
-                                value = { transferAmount }
-                                required
-                                autoFocus
-                            />
-
-                            <label htmlFor='reciever' className='label'>Enter reciever address:</label>
-                            <input
-                                id="transfer-reciever"
-                                type="text"
-                                onChange={(e) => setTransferReciever(e.target.value)}
-                                value = { transferReciever }
-                                required
-                                autoFocus
-                            />  
-
-                            <button>Transfer RBT</button>
-
-                        </form>
+                        <div className='fund-card'>
+                            <p className="home-transaction-h1">Transfer</p>
+                            <form onSubmit={handleTransferSubmit}>
+                                <label htmlFor='amount' className='fund-label'>enter amount:</label>
+                                <br/>
+                                <input 
+                                    className='fund-input'
+                                    id="transfer-amount" 
+                                    type="number"
+                                    onChange={(e) => setTransferAmount(e.target.value)}
+                                    value = { transferAmount }
+                                    required
+                                    autoFocus
+                                />
+                                <label htmlFor='reciever' className='fund-label'>enter reciever address:</label>
+                                <br/>
+                                <input
+                                    className='fund-input'
+                                    id="transfer-reciever"
+                                    type="text"
+                                    onChange={(e) => setTransferReciever(e.target.value)}
+                                    value = { transferReciever }
+                                    required
+                                    autoFocus
+                                />  
+                                <button className='fund-button'>Transfer RBT</button>
+                            </form>
+                        </div>
 
                     </section>
                 </div>
