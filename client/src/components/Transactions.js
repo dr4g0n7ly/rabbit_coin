@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react'
 import { AccountContext } from '../AccountContext'
 import TransactionCard from './TransactionCard'
 import RequestLogin from './RequestLogin'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 const blockUrl = "https://api-goerli.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=T8SCBJ2NYE2Q4C2Q55E5JQZ3FYQYUEVUCZ"
@@ -60,17 +62,26 @@ const Transactions = () => {
 
     const handleDepositSubmit = async (e) => {
         e.preventDefault()
-        const ethers = require("ethers")
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
 
-        let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
+        try {
+            const ethers = require("ethers")
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
 
-        const depositPriceString = depositAmount.toString() + "000000000000" + "0000000"
-        const depositAmountString = depositAmount.toString() + "0000000"
+            let contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
 
-        let depositComplete = await contract.deposit(depositAmountString, {value: depositPriceString})
-        console.log("depositComplete: ", depositComplete)
+            const depositPriceString = depositAmount.toString() + "000000000000" + "0000000"
+            const depositAmountString = depositAmount.toString() + "0000000"
+
+            let depositComplete = await contract.deposit(depositAmountString, {value: depositPriceString})
+            console.log("depositComplete: ", depositComplete)  
+        } catch (err) {
+            const error = err.message.substring(0, err.message.indexOf("["))
+            toast.error(error, {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        
     }
 
     const handleWithdrawSubmit = async (e) => {
@@ -175,6 +186,8 @@ const Transactions = () => {
                 <div className="Funds">
                     <p>Balance</p>
                     <p>{balance}</p>
+
+                    <ToastContainer />
 
                     <br/>
                     <br/>
