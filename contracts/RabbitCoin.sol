@@ -36,6 +36,13 @@ contract RabbitCoin {
         uint8 status;
     }
 
+    // Status:
+    // 1: requested
+    // 2: accepted
+    // 3: paid
+    // 4: defaulted
+    // 5: cancelled
+
     mapping(uint256 => LoanToken) private loans;
     mapping(uint256 => string) private tokenURIs;
 
@@ -209,11 +216,31 @@ contract RabbitCoin {
 
     function cancelLoanRequest(uint256 tokenID) public returns (bool) {
         require(msg.sender == loans[tokenID].borrower, "Only borrower can cancel requested loan");
-        require(loans[tokenID].status == 1, "Loan can only be cancelled at requested State");
+        require(loans[tokenID].status == 1, "Loan can only be cancelled at request state");
+        require(loans[tokenID].dueDate > block.number, "Loan has expired"); 
 
         loans[tokenID].status = 5;
 
         return true;        
+    }
+
+    function acceptLoan(uint256 tokenID) public returns (bool) {
+        require(msg.sender == minter, "Only minter allowed to accept loan requests");
+        require(loans[tokenID].principle < address(this).balance, "Not enough deposits to accept loan");
+        require(loans[tokenID].status == 1, "Loan can only be accepted at request state");
+        require(loans[tokenID].dueDate > block.number, "Loan has expired"); 
+
+        loans[tokenID].borrower.transfer(loans[tokenID].principle);
+        loans[tokenID].status = 2;
+
+        return true;
+    }
+
+    function payLoan(uint256 tokenID) public payable returns (bool) {
+        require(msg.value == loans[tokenID].totalPayback, "Invalid amount of Ethereum sent");
+        tokenURIs[tokenID] = "burned";
+        loans[tokenID].status = 3;
+        return true;
     }
 
 }

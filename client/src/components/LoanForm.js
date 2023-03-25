@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // import HarmonyNFT from "../abi/HarmonyNFT.json";
 // import { ethers } from 'ethers';
+import RabbitCoinJSON from '../RabbitCoin.json'
 const APIKEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGFEQjA0NkVhMGY5YTA1ZmUxOTYwN2JjOTI3ODFjNDBhNkRmNURhOGIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY3OTcyNTkxNjU0MywibmFtZSI6IlJhYmJpdCBmaW5hbmNlIn0.X2I1N3m8ULaDGw86LXKQMXVTVOcA7wtodCaQRjYC0Uc';
 // const nftContractAddress = '<YOUR-NFT-SMART-CONTRACT-ADDRESS>';
 
@@ -31,6 +32,7 @@ const LoanForm =() => {
         setImageView("");
         setMetaDataURl("");
         setTxURL("");
+        setErrorMessage("")
     }
 
     const handleDetailsChange = event => {
@@ -63,6 +65,29 @@ const LoanForm =() => {
         }
     }
 
+    const requestContract = async(metadata) =>{
+        try {
+            setTxStatus("Sending loan request to RabbitCoin smart-contract.");
+            const ethers = require("ethers");
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const connectedContract = new ethers.Contract(
+                RabbitCoinJSON.address,
+                RabbitCoinJSON.abi,
+                provider.getSigner()
+            );
+            const weiPrinciple = ethers.utils.parseUnits(principle, 'ether')
+            const weiTotalRepay = ethers.utils.parseUnits(totalRepay, 'ether')
+            const loanToken = await connectedContract.requestLoan(metadata.url, weiPrinciple, weiTotalRepay, duration);
+            return loanToken;
+        } catch (error) {
+            setErrorMessage("Failed to request loan from RabbitCoin.");
+            console.log(error);
+            toast.error(errorMessage, {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    }
+
     const getIPFSGatewayURL = (ipfsURL)=>{
         let urlArray = ipfsURL.split("/");
         let ipfsGateWayURL = `https://${urlArray[2]}.ipfs.dweb.link/${urlArray[3]}`;
@@ -79,34 +104,30 @@ const LoanForm =() => {
 
     const mintNFTToken = async(event, uploadedFile) =>{
         event.preventDefault();
+        setErrorMessage("")
+        setTxStatus("");
+        setImageView("");
+        setMetaDataURl("");
+        setTxURL("");
         //1. upload NFT content via NFT.storage
-        console.log("loan details: ", JSON.stringify(loanDetails))
         const metaData = await uploadCollateralContent(uploadedFile, JSON.stringify(account), JSON.stringify(loanDetails));
         console.log("metaData: ", metaData)
         
         // //2. Mint a NFT token on Your Smart contract
-        // const mintNFTTx = await sendTxToHarmony(metaData);
+        const loanToken = await requestContract(metaData);
+        toast.success("Lpan request successful", {
+            position: toast.POSITION.TOP_CENTER
+        });
+        console.log(loanToken)
+        setErrorMessage("")
+        setTxStatus("");
+        setImageView("");
+        setMetaDataURl("");
+        setTxURL("");
 
         //3. preview the minted nft
         // previewNFT(metaData);
     }
-
-    // const sendTxToHarmony = async(metadata) =>{
-    //     try {
-    //         setTxStatus("Sending mint transaction to Harmony Blockchain.");
-    //         const provider = new ethers.providers.Web3Provider(window.ethereum);
-    //         const connectedContract = new ethers.Contract(
-    //             nftContractAddress,
-    //             HarmonyNFT.abi,
-    //             provider.getSigner()
-    //         );
-    //         const mintNFTTx = await connectedContract.mintItem(metadata.url);
-    //         return mintNFTTx;
-    //     } catch (error) {
-    //         setErrorMessage("Failed to send tx to Harmony.");
-    //         console.log(error);
-    //     }
-    // }
 
     return(
         <div className='Loan-form'>
@@ -128,7 +149,7 @@ const LoanForm =() => {
                 <textarea
                     value={loanDetails}
                     onChange={handleDetailsChange}
-                    rows={20}
+                    rows={10}
                     cols={40}
                 />
 
