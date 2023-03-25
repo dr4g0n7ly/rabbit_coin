@@ -118,6 +118,7 @@ const Transactions = () => {
             <div className="Transactions">
                 <div className="Main">
                     <p className="main-h1">Transactions</p>
+                    
                     <div className="main-stats">
                         <div className="main-stat-child">
                             <p className="stat-child-0">Last</p>
@@ -125,15 +126,15 @@ const Transactions = () => {
                         </div>
                         <div className="main-stat-child">
                             <p className="stat-child-1">TRANSACTIONS</p>
-                            <p className="stat-child-2">30 days</p>
+                            <p className="stat-child-2">30</p>
                         </div>
                         <div className="main-stat-child">
                             <p className="stat-child-1">TOTAL EXPENSES</p>
-                            <p className="stat-child-2">6843909 RBT</p>
+                            <p className="stat-child-2">4053 RBT</p>
                         </div>
                         <div className="main-stat-child">
                             <p className="stat-child-1">TOTAL INCOME</p>
-                            <p className="stat-child-2">8939390 RBT</p>
+                            <p className="stat-child-2">8908 RBT</p>
                         </div>
                     </div>
                     <div className="main-trs-heads">
@@ -150,6 +151,7 @@ const Transactions = () => {
                             <p className="trs-head">Amount</p>
                         </div>
                     </div>
+                    <div className='trs-head-line'></div>
 
                     <div className="transaction-list">
                         {transactions.map((trs) => {
@@ -184,13 +186,13 @@ const Transactions = () => {
 
                 </div>
                 <div className="Funds">
-                    <p>Balance</p>
-                    <p>{balance}</p>
+    
+                    <p className='main-balance-h1'>BALANCE <span className='main-balance-output'>{balance}</span></p>
 
                     <ToastContainer />
 
                     <section>
-                        <div className='fund-card'>
+                        <div className='fund-card' style={{marginTop:'-12px'}}>
                             <p className="home-transaction-h1">Deposit</p>
                             <form onSubmit={handleDepositSubmit}>
                                 <label htmlFor='amount' className='fund-label'>enter amount:</label>
@@ -226,7 +228,7 @@ const Transactions = () => {
                             </form>
                         </div>
 
-                        <div className='fund-card'>
+                        <div className='fund-card' style={{border:'0px'}}>
                             <p className="home-transaction-h1">Transfer</p>
                             <form onSubmit={handleTransferSubmit}>
                                 <label htmlFor='amount' className='fund-label'>enter amount:</label>
@@ -256,6 +258,7 @@ const Transactions = () => {
                         </div>
 
                     </section>
+
                 </div>
             </div>
         )

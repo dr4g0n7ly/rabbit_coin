@@ -10,7 +10,7 @@ body {
 .Sidebar {
     width: 200px;
     height: 100vh;
-    border: 2px solid #1f1f1f;
+    border: 2px solid #fff;
     position: fixed;
     left:0;
     top:0;
@@ -21,7 +21,7 @@ body {
     display: flex;
     margin: 12px;
     margin-top: 20px;
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
 }
 
 .sidebar-logo-img {
@@ -41,14 +41,14 @@ body {
 }
 
 .side-links {
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     margin: 12px;
     margin-top: 5vh;
 }
 
 .side-link {
     display: flex;
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     margin-top: 6px;
     margin-bottom: 8px;
     height: 50px;
@@ -113,14 +113,14 @@ a {
 
 .Transactions {
     margin-left: 204px;
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 380px;
     font-family: 'Poppins', sans-serif;
 }
 
 .Main {
-    border: #1f1f1f 1px solid;
+    border: #fff 1px solid;
     margin-right: 8px;
 }
 
@@ -129,8 +129,22 @@ a {
     margin-left: 32px;
 }
 
+.main-balance-h1 {
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #606060;
+}
+
+.main-balance-output {
+    margin: 2px;
+    font-weight: 600;
+    font-size: 23px;
+    color: #000;
+}
+
 .main-stats {
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-left: 20px;
@@ -138,7 +152,7 @@ a {
 }
 
 .main-stat-child {
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     padding: 16px;
     padding-left: 1.6vw;
 }
@@ -164,7 +178,7 @@ a {
 
 .main-trs-heads {
     margin-top: 40px;
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     display: grid;
     grid-template-columns: 1.1fr 4fr 1.5fr 1.5fr;
 }
@@ -180,7 +194,7 @@ a {
 }
 
 .trs-row {
-    border: 1px solid #1f1f1f;
+    border: 1px solid #fff;
     display: grid;
     grid-template-columns: 1.1fr 4fr 1.5fr 1.5fr;
 }
@@ -193,14 +207,19 @@ a {
 }
 
 .Funds {
-    border: #1f1f1f 1px solid;
+    width: 360px;
+    border: #fff 1px solid;
     background-color: #F3F4EF;
     font-family: 'Work Sans', sans-serif;
+    height: 98vh;
+    position: fixed;
+    right: 8px;
 }
 
 .fund-card {
     width: 320px;
     margin: 0 auto;
+    margin-top: 0px;
     border-bottom: #000 1px solid;
     padding: 8px;
 }
@@ -220,14 +239,25 @@ a {
     height: 16px;
     margin: 8px 0px;
     font-family: 'Work Sans', sans-serif;
+    border-radius: 2px;
 }
 
 .fund-button {
     margin: 0px;
     width: 320px;
-    height: 34px;
+    height: 36px;
     margin: 8px 0px;
     font-family: 'Poppins', sans-serif;
+    color: white;
+    background-color: #000;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    margin-top: 2px;
+}
+
+.fund-button:hover {
+    background-color: #DDFF55;
+    color: #000;
 }
 
 /* REQUEST LOGIN */
