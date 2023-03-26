@@ -181,6 +181,7 @@ a {
     border: 1px solid #fff;
     display: grid;
     grid-template-columns: 1.1fr 4fr 1.5fr 1.5fr;
+    border-bottom: 1px solid #292929;
 }
 
 .trs-head {
@@ -194,6 +195,7 @@ a {
 }
 
 .trs-row {
+    margin-top: 12px;
     border: 1px solid #fff;
     display: grid;
     grid-template-columns: 1.1fr 4fr 1.5fr 1.5fr;
@@ -203,7 +205,6 @@ a {
     font-weight: 500;
     color: #000;
     font-size: 14px;
-    border-top: 1px solid #000;
 }
 
 .Funds {
@@ -346,10 +347,18 @@ a {
   }
 
   .loan-trs-heads {
-    margin-top: 10px;
+    margin-top: 20px;
     border: 1px solid #fff;
     display: grid;
     grid-template-columns: 1.3fr 1.3fr 1.3fr 1.3fr 1.8fr;
+    border-bottom: 1px solid #000;
+  }
+
+  .loan-trs-heads-minter {
+    margin-top: 20px;
+    border: 1px solid #fff;
+    display: grid;
+    grid-template-columns: 3.4fr 1.3fr 1.3fr 1.3fr 1.1fr 1.8fr;
     border-bottom: 1px solid #000;
   }
 
@@ -359,7 +368,16 @@ a {
     grid-template-columns: 1.3fr 1.3fr 1.3fr 1.3fr 1.8fr;
     margin-bottom: 4px;
     margin-top: 4px;
-}
+  }
+
+  .loan-row-mint {
+    border: 1px solid #fff;
+    display: grid;
+    grid-template-columns: 3.4fr 1.3fr 1.3fr 1.3fr 1.1fr 1.8fr;
+    margin-bottom: 4px;
+    margin-top: 4px;
+  }
+
 
 .loan-el {
     font-weight: 500;

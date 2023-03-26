@@ -1,8 +1,11 @@
-const LoanCard = (props) => {
-
+const MinterLoanCard = (props) => {
+    console.log("mint")
     if (props.status == 1) {
         return (
-            <div className="loan-row">
+            <div className="loan-row-mint">
+                <div className="loan-el block-col">
+                    <p className="">{props.borrower}</p>
+                </div>
                 <div className="loan-el block-col">
                     <p className="">requested</p>
                 </div>
@@ -15,12 +18,15 @@ const LoanCard = (props) => {
                 <div className="loan-el">
                     <p className="">{props.dueBlock}</p>
                 </div>
-                <button className="loan-el-button">Cancel Loan</button>
+                <button className="loan-el-button">Accept Loan</button>
             </div>
         )
     } else if (props.status == 2) {
         return (
             <div className="loan-row">
+                <div className="loan-el block-col">
+                    <p className="">{props.borrower}</p>
+                </div>
                 <div className="loan-el block-col">
                     <p className="">accepted</p>
                 </div>
@@ -33,7 +39,9 @@ const LoanCard = (props) => {
                 <div className="loan-el">
                     <p className="">{props.dueBlock}</p>
                 </div>
-                <button className="loan-el-button">Pay Loan</button>
+                <div className="loan-el" style={{textAlign:'center'}}>
+                    <p className="">-</p>
+                </div>
             </div>
         )
     } else if (props.status == 3) {
@@ -71,9 +79,7 @@ const LoanCard = (props) => {
                 <div className="loan-el">
                     <p className="">{props.dueBlock}</p>
                 </div>
-                <div className="loan-el" style={{textAlign:'center'}}>
-                    <p className="">-</p>
-                </div>
+                <button className="loan-el-button">Accept Loan</button>
             </div>
         )
     } else if (props.status == 5) {
@@ -98,4 +104,4 @@ const LoanCard = (props) => {
         )
     }
 }
-export default LoanCard
+export default MinterLoanCard

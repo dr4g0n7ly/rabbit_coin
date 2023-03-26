@@ -18,15 +18,10 @@ const Sidebar = () => {
     useEffect(() => {      
         const getAccounts = async () => {
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'})
-            console.log(accounts)
             setAccount(accounts[0]);
         }
 
         getAccounts()
-
-        return () => {
-            console.log("account: ",account)
-        }
     });
 
     const web3Handler = async () => {
@@ -46,10 +41,7 @@ const Sidebar = () => {
     } 
   
     const loadContracts = async (signer) => {
-  
         const contract = new ethers.Contract(RabbitCoinJSON.address, RabbitCoinJSON.abi, signer)
-        console.log("rabbit coin :", contract)
-
     }
 
     const Login = () => {

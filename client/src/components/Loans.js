@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { AccountContext } from '../AccountContext'
 import LoanForm from "./LoanForm"
 import LoanCard from "./LoanCard"
+import MinterLoanCard from "./MinterLoanCard"
 
 import RabbitCoinJSON from '../RabbitCoin.json'
 import refresh from './public/icons/refresh.png'
@@ -10,6 +11,7 @@ const Loans = () => {
 
     const [currentBlock, setCurrentBlock] = useState()
     const [loanData, setLoanData] = useState([])
+    const [isMinter, setisMinter] = useState(false)
     const {account} = useContext(AccountContext)
 
     const getCurrentBlock = async () => {
@@ -27,6 +29,14 @@ const Loans = () => {
       let urlArray = ipfsURL.split("/");
       let ipfsGateWayURL = `https://${urlArray[2]}.ipfs.dweb.link/${urlArray[3]}`;
       return ipfsGateWayURL;
+    }
+
+    const checkMinter = () => {
+        // console.log("0x567D140925c8268398aC66B3b35B3f8e40fed5D5".toLowerCase(), account)
+        if ("0x567D140925c8268398aC66B3b35B3f8e40fed5D5".toLowerCase() === account) {
+            console.log("isMinter")
+            setisMinter(true)
+        }
     }
   
     // const previewNFT = ({data}) =>{
@@ -46,9 +56,9 @@ const Loans = () => {
         let allLoans = await connectedContract.getAllLoans()
         const items = await Promise.all(allLoans.map(async i => {
             const tokenURI = await connectedContract.getTokenURI(i.tokenId);
-            const metaDataURL = getIPFSGatewayURL(tokenURI)
-            console.log("tokenURL", metaDataURL)
-            console.log("i: ", i)
+            // const metaDataURL = getIPFSGatewayURL(tokenURI)
+            // console.log("tokenURL", metaDataURL)
+            // console.log("i: ", i)
 
             let item = {
                 tokenId: i.tokenId.toString(),
@@ -69,6 +79,10 @@ const Loans = () => {
         getAllLoans()
     }, [])
 
+    useEffect(() => {
+        checkMinter()
+    })
+
     return (
         <div className="Loans">
             <div className="Loan-page">
@@ -82,34 +96,70 @@ const Loans = () => {
                         <p className="block-NUM">{currentBlock}</p>
                     </div>
                 </div>
-                <div className="loan-trs-heads">
-                        <div className="main-trs-head block-col">
-                            <p className="trs-head">Status</p>
-                        </div>
-                        <div className="main-trs-head">
-                            <p className="trs-head">Loan Amount</p>
-                        </div>
-                        <div className="main-trs-head">
-                            <p className="trs-head">Payable Amount</p>
-                        </div>
-                        <div className="main-trs-head">
-                            <p className="trs-head">Due block</p>
-                        </div>
-                        <div className="main-trs-head">
-                            <p className="trs-head" style={{textAlign:'center'}}>Actions</p>
-                        </div>
-                    </div>
-                    <div className='trs-head-line'></div>
 
-                    <div className="transaction-list">
-                        {loanData.map((loan) => {
-                            if (JSON.stringify(account).toLowerCase() === JSON.stringify(loan.borrower).toLowerCase()) {
+                { isMinter ? 
+                    <div>
+                        <div className="loan-trs-heads-minter">
+                            <div className="main-trs-head block-col">
+                                <p className="trs-head">Address</p>
+                            </div>
+                            <div className="main-trs-head block-col">
+                                <p className="trs-head">Status</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head">Loan Amount</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head">Payable Amount</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head">Due block</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head" style={{textAlign:'center'}}>Actions</p>
+                            </div>
+                        </div>
+                        <div className='trs-head-line'></div>
+                        <div className="transaction-list">
+                            {loanData.map((loan) => {
                                 return (
-                                    <LoanCard key={loan.tokenId} status={loan.status} loanAmount={loan.loanAmount} payoffAmount={loan.payoffAmount} dueBlock={loan.dueBlock}/>
+                                    <MinterLoanCard key={loan.tokenId} status={loan.status} loanAmount={loan.loanAmount} payoffAmount={loan.payoffAmount} dueBlock={loan.dueBlock} borrower={loan.borrower}/>
                                 )
-                            }
-                        })}
+                            })}
+                        </div>
+
                     </div>
+                    :
+                    <div>
+                        <div className="loan-trs-heads">
+                            <div className="main-trs-head block-col">
+                                <p className="trs-head">Status</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head">Loan Amount</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head">Payable Amount</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head">Due block</p>
+                            </div>
+                            <div className="main-trs-head">
+                                <p className="trs-head" style={{textAlign:'center'}}>Actions</p>
+                            </div>
+                        </div>
+                        <div className='trs-head-line'></div>
+                        <div className="transaction-list">
+                            {loanData.map((loan) => {
+                                if (JSON.stringify(account).toLowerCase() === JSON.stringify(loan.borrower).toLowerCase()) {
+                                    return (
+                                        <LoanCard key={loan.tokenId} status={loan.status} loanAmount={loan.loanAmount} payoffAmount={loan.payoffAmount} dueBlock={loan.dueBlock} />
+                                    )
+                                }
+                            })}
+                        </div>
+                    </div>
+                }
             </div>
             <LoanForm/>
         </div>
