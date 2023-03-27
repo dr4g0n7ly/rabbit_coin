@@ -1,0 +1,6 @@
+trasaction event - smart contract
+transaction event - frontend
+loan functions - frontend
+
+totals in smart contract and frontend
+profit functions in smart contract and frontend (average amount calculation)
