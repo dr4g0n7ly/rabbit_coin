@@ -18,7 +18,7 @@ The borrower is allowed to choose the loan rate and depending on the collateral 
 The depositers do not recieve a small fixed rate unlike a traditional banking system that keeps 80% of the loan difference instead the RabbitCoin ecosystem 10% for its own functioning and returns 90% of the net profit to the depositers based on average monthly deposit balance.
 
 
-## Advantages an Limitations
+## Advantages and Limitations
 
 RabbitCoin is much more attractive to depositers as they can earn much more than in a traditional banking system and is much more attractive to borrowers as the interest rate can be choose by them.
 
