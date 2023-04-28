@@ -1,4 +1,4 @@
-# Rabbit Coin
+# ![image](https://user-images.githubusercontent.com/82759046/235072132-d20e0a56-c177-4779-ac5a-95bfce792622.png)
 
 Rabbit Coin is a web3 application written in Solidity on the Ethereum blockchain, and helps run a fully functional and transparent banking system. The smart contract written allows multiple banking features while also ensuring complete transparency in how much the bank owns and which loans the bank approves.
 
