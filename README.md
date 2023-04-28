@@ -12,6 +12,8 @@ RabbitCoin is much more attractive to depositers as they can earn much more than
 
 Limitations: complete privacy is lost due to the system being fully transparent and users do not have an insured fixed rate of interest.
 
+--------------------------
+
 Try running some of the following tasks:
 
 ```shell
