@@ -2,7 +2,8 @@
 
 Rabbit Coin is a web3 application written in Solidity on the Ethereum blockchain, and helps run a fully functional and transparent banking system. The smart contract written allows multiple banking features while also ensuring complete transparency in how much the bank owns and which loans the bank approves.
 
----
+
+## About
 
 
 
@@ -16,15 +17,15 @@ The borrower is allowed to choose the loan rate and depending on the collateral 
 
 The depositers do not recieve a small fixed rate unlike a traditional banking system that keeps 80% of the loan difference instead the RabbitCoin ecosystem 10% for its own functioning and returns 90% of the net profit to the depositers based on average monthly deposit balance.
 
----
+
+## Advantages an Limitations
 
 RabbitCoin is much more attractive to depositers as they can earn much more than in a traditional banking system and is much more attractive to borrowers as the interest rate can be choose by them.
 
-Limitations: complete privacy is lost due to the system being fully transparent and users do not have an insured fixed rate of interest.
+Complete privacy is lost due to the system being fully transparent and users do not have an insured fixed rate of interest.
 
----
 
-### Utilities
+## Utilities
 
 - [x] Get balance
 - [x] Get current block
