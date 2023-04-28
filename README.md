@@ -4,6 +4,12 @@ Rabbit Coin is a web3 application written in Solidity on the Ethereum blockchain
 
 ---
 
+
+
+https://user-images.githubusercontent.com/82759046/235062650-320b971e-c186-40fb-8a6d-552cd63855ef.mp4
+
+
+
 A separate cryptocurrency was developed instead of using Ethereum so as to ensure the privacy of the users who store most of their moneteray assets in Ethereum. The RabbitCoin cryptocurrency developedd allows for a way to measure how much Ethereum was deposited and withdrawn.
 
 The borrower is allowed to choose the loan rate and depending on the collateral document submitted and the attractiveness of the loan Authorizers can choose to approve or deny good loan offers. All the transactions including loans submitted are publicly available.
@@ -18,12 +24,23 @@ Limitations: complete privacy is lost due to the system being fully transparent 
 
 ---
 
-Try running some of the following tasks:
+### Utilities
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+- [x] Get balance
+- [x] Get current block
+- [x] Deposit Ethereum
+- [x] Withdraw Ethereum
+- [x] Transfer RabbitCoin
+- [x] Request loan
+- [x] Upload collateral document
+- [x] Cancel loan
+- [x] Accept loan
+- [x] Pay loan
+- [ ] Get net profit
+- [ ] Average monthly interest
+- [x] Get recent transactions
+- [x] Get recent loan request
+- [ ] Get recent accepted loans
+- [ ] General Token statistics
+
+
