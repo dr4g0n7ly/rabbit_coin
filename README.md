@@ -11,7 +11,7 @@ https://user-images.githubusercontent.com/82759046/235062650-320b971e-c186-40fb-
 
 
 
-A separate cryptocurrency was developed instead of using Ethereum so as to ensure the privacy of the users who store most of their moneteray assets in Ethereum. The RabbitCoin cryptocurrency developedd allows for a way to measure how much Ethereum was deposited and withdrawn.
+A separate cryptocurrency was developed instead of using Ethereum so as to ensure the privacy of the users who store most of their moneteray assets in Ethereum. The RabbitCoin cryptocurrency developed allows for a way to measure how much Ethereum was deposited and withdrawn.
 
 The borrower is allowed to choose the loan rate and depending on the collateral document submitted and the attractiveness of the loan Authorizers can choose to approve or deny good loan offers. All the transactions including loans submitted are publicly available.
 
